@@ -1,6 +1,6 @@
 <?php
 
-namespace sdkmoneygate;
+namespace sdk_moneygate;
 /**
  * for auth
  */

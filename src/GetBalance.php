@@ -1,4 +1,6 @@
-<?
+<?php
+
+
 /**
  * for getting balance
  */
