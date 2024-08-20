@@ -9,6 +9,12 @@
         }
     ],
     "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/mishaniahomi/sdk_moneygate.git"
+        }
+    ],
     "require": {
         "php": ">=8.3.6"
     },
