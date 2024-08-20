@@ -19,11 +19,11 @@ class Balance
     function __construct(Auth $auth, string $X_Auth_Token)
     {
         $this->auth = $auth;
-        $this->X_Auth_Token = $X_Auth_Token;       
+        $this->X_Auth_Token = $X_Auth_Token;
     }
     function get_balance()
     {
-        $url = self::STABLE_TEST_ENV;   
+        $url = self::STABLE_TEST_ENV;
         $options = [
             'http' => [
                 'method' => 'GET',
