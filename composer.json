@@ -1,6 +1,7 @@
 {
     "name": "homi/sdk_moneygate",
-    "description": "Данная библиотека предназначена для упрощения работы с API Moneygate.",
+    "description": "PHP-SDK library for work with Moneygate API",
+    "version": "1.0.0",
     "type": "library",
     "authors": [
         {
@@ -10,5 +11,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=8.3.6"
+    },
+    "autoload": {
+        "classmap": ["src/"]
     }
 }
