@@ -1,21 +1,24 @@
 <?php
 
 namespace sdk_moneygate;
+
 /**
  * for auth
  */
 
+class Auth
+{
 
-class Auth {
+    public $privateKey;
+    public $data;
 
-    public $privateKey, $data;
-
-    function __construct($privateKey, $data){
+    function __construct(string $privateKey, string $data)
+    {
         $this->privateKey = $privateKey;
         $this->data = $data;
     }
 
-    function get_X_Auth_Sign()
+    function get_X_Auth_Sign(): string
     {
         // Функция для получения X-Auth-Sign
         // Подписываем данные
