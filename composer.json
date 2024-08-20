@@ -1,5 +1,5 @@
 {
-    "name": "homi/sdk_moneygate",
+    "name": "homi/sdkmoneygate",
     "description": "PHP-SDK library for work with Moneygate API",
     "version": "1.0.0",
     "type": "library",
