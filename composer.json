@@ -1,0 +1,14 @@
+{
+    "name": "homi/sdk_moneygate",
+    "description": "Данная библиотека предназначена для упрощения работы с API Moneygate.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "homichuk.mihail"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.3.6"
+    }
+}
