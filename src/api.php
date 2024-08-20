@@ -1,6 +1,5 @@
 <?php
 
-
 // Получение X-Auth-Sign
 function get_X_Auth_Sign($data, $privateKey)
 {
@@ -23,10 +22,9 @@ function get_balance($X_Auth_Token, $privateKey)
         'http' => [
             'method' => 'GET',
             'header' => "X-Auth-Token: " . $X_Auth_Token . "\r\n" .
-                "X-Auth-Sign: " . $X_Auth_Sign . "\r\n" .
-                "X-Request-ID: " . $X_Request_ID . "\r\n" .
-                "Accept: application/json'"
-
+            "X-Auth-Sign: " . $X_Auth_Sign . "\r\n" .
+            "X-Request-ID: " . $X_Request_ID . "\r\n" .
+            "Accept: application/json'",
 
         ],
     ];
@@ -42,11 +40,11 @@ function get_balance($X_Auth_Token, $privateKey)
  * Шаг 1 – Создание платежного ордера
  *
  * @param str $X_Auth_Token
- * @param str $privateKey 
+ * @param str $privateKey
  * @param str $paymentOrderID
- * @param str $amount 
+ * @param str $amount
  * @param str $currency
- * @param str $callback_url 
+ * @param str $callback_url
  * //Пример использования
  * $privateKey = file_get_contents('moneygate.key');
  * $X_Auth_Token = "7edbbe5b-1661-4959-b5c8-4dd083995935";
@@ -63,7 +61,7 @@ function get_balance($X_Auth_Token, $privateKey)
  */
 function create_paymentOrder($X_Auth_Token, $privateKey, $paymentOrderID, $amount = 100, $currency = "RUB", $callback_url = "https://merchant-side.com/send-status-here")
 {
-    
+
     $url = "https://moneygate.master.blowfish.api4ftx.cloud/v1/host-to-host/deposit-orders/new";
     $data = array(
         "id" => $paymentOrderID,
@@ -71,8 +69,8 @@ function create_paymentOrder($X_Auth_Token, $privateKey, $paymentOrderID, $amoun
         "data" => array(
             "callback_url" => $callback_url,
             "amount" => $amount,
-            "currency" => $currency
-        )
+            "currency" => $currency,
+        ),
     );
     $X_Auth_Sign = get_X_Auth_Sign(json_encode($data), $privateKey);
     $options = [
@@ -80,9 +78,9 @@ function create_paymentOrder($X_Auth_Token, $privateKey, $paymentOrderID, $amoun
             'method' => 'POST',
             'content' => json_encode($data),
             'header' => "X-Auth-Token: " . $X_Auth_Token . "\r\n" .
-                "X-Auth-Sign: " . $X_Auth_Sign . "\r\n" .
-                "Content-Type: application/json\r\n" .
-                "Accept: application/json'"
+            "X-Auth-Sign: " . $X_Auth_Sign . "\r\n" .
+            "Content-Type: application/json\r\n" .
+            "Accept: application/json'",
         ],
     ];
     $context = stream_context_create($options);
@@ -94,7 +92,7 @@ function create_paymentOrder($X_Auth_Token, $privateKey, $paymentOrderID, $amoun
  * Шаг 2 – Получение списка платежных инструментов
  *
  * @param str $X_Auth_Token
- * @param str $privateKey 
+ * @param str $privateKey
  * @param str $paymentOrderID
  * //Пример использования
  * $privateKey = file_get_contents('moneygate.key');
@@ -103,91 +101,91 @@ function create_paymentOrder($X_Auth_Token, $privateKey, $paymentOrderID, $amoun
  * get_payment_instruments($X_Auth_Token, $privateKey, $paymentOrderID);
  * // Вывод:
  * {
-    "success": true,
-    "data": {
-        "id": "66ba50cf5d0f0",
-        "payment_instruments": [
-            {
-                "bank": "tinkoff",
-                "bank_name": "Тинькофф",
-                "payment_type": "card2card",
-                "payment_type_name": "Card to Card"
-            },
-            {
-                "bank": "tinkoff",
-                "bank_name": "Тинькофф",
-                "payment_type": "sbp",
-                "payment_type_name": "СБП"
-            },
-            {
-                "bank": "sberbank",
-                "bank_name": "СберБанк",
-                "payment_type": "sbp",
-                "payment_type_name": "СБП"
-            },
-            {
-                "bank": "sberbank",
-                "bank_name": "СберБанк",
-                "payment_type": "card2card",
-                "payment_type_name": "Card to Card"
-            },
-            {
-                "bank": "otherrfbank",
-                "bank_name": "Другой РФ банк",
-                "payment_type": "card2card",
-                "payment_type_name": "Card to Card"
-            },
-            {
-                "bank": "vtb",
-                "bank_name": "ВТБ",
-                "payment_type": "sbp",
-                "payment_type_name": "СБП"
-            },
-            {
-                "bank": "alfa",
-                "bank_name": "Альфа Банк",
-                "payment_type": "card2card",
-                "payment_type_name": "Card to Card"
-            },
-            {
-                "bank": "alfa",
-                "bank_name": "Альфа Банк",
-                "payment_type": "sbp",
-                "payment_type_name": "СБП"
-            },
-            {
-                "bank": "raifru",
-                "bank_name": "Райффайзенбанк",
-                "payment_type": "sbp",
-                "payment_type_name": "СБП"
-            },
-            {
-                "bank": "vtb",
-                "bank_name": "ВТБ",
-                "payment_type": "card2card",
-                "payment_type_name": "Card to Card"
-            },
-            {
-                "bank": "raifru",
-                "bank_name": "Райффайзенбанк",
-                "payment_type": "card2card",
-                "payment_type_name": "Card to Card"
-            },
-            {
-                "bank": "sberbank",
-                "bank_name": "СберБанк",
-                "payment_type": "sberpay",
-                "payment_type_name": "SberPay"
-            }
-        ]
-    }
+"success": true,
+"data": {
+"id": "66ba50cf5d0f0",
+"payment_instruments": [
+{
+"bank": "tinkoff",
+"bank_name": "Тинькофф",
+"payment_type": "card2card",
+"payment_type_name": "Card to Card"
+},
+{
+"bank": "tinkoff",
+"bank_name": "Тинькофф",
+"payment_type": "sbp",
+"payment_type_name": "СБП"
+},
+{
+"bank": "sberbank",
+"bank_name": "СберБанк",
+"payment_type": "sbp",
+"payment_type_name": "СБП"
+},
+{
+"bank": "sberbank",
+"bank_name": "СберБанк",
+"payment_type": "card2card",
+"payment_type_name": "Card to Card"
+},
+{
+"bank": "otherrfbank",
+"bank_name": "Другой РФ банк",
+"payment_type": "card2card",
+"payment_type_name": "Card to Card"
+},
+{
+"bank": "vtb",
+"bank_name": "ВТБ",
+"payment_type": "sbp",
+"payment_type_name": "СБП"
+},
+{
+"bank": "alfa",
+"bank_name": "Альфа Банк",
+"payment_type": "card2card",
+"payment_type_name": "Card to Card"
+},
+{
+"bank": "alfa",
+"bank_name": "Альфа Банк",
+"payment_type": "sbp",
+"payment_type_name": "СБП"
+},
+{
+"bank": "raifru",
+"bank_name": "Райффайзенбанк",
+"payment_type": "sbp",
+"payment_type_name": "СБП"
+},
+{
+"bank": "vtb",
+"bank_name": "ВТБ",
+"payment_type": "card2card",
+"payment_type_name": "Card to Card"
+},
+{
+"bank": "raifru",
+"bank_name": "Райффайзенбанк",
+"payment_type": "card2card",
+"payment_type_name": "Card to Card"
+},
+{
+"bank": "sberbank",
+"bank_name": "СберБанк",
+"payment_type": "sberpay",
+"payment_type_name": "SberPay"
+}
+]
+}
 }
  */
 function get_payment_instruments($X_Auth_Token, $privateKey, $paymentOrderID)
 {
     $url = "https://moneygate.master.blowfish.api4ftx.cloud/v1/host-to-host/deposit-orders/get-payment-instruments";
     $data = array(
-        "id" => $paymentOrderID
+        "id" => $paymentOrderID,
     );
     $X_Auth_Sign = get_X_Auth_Sign(json_encode($data), $privateKey);
     $options = [
@@ -195,9 +193,9 @@ function get_payment_instruments($X_Auth_Token, $privateKey, $paymentOrderID)
             'method' => 'POST',
             'content' => json_encode($data),
             'header' => "X-Auth-Token: " . $X_Auth_Token . "\r\n" .
-                "X-Auth-Sign: " . $X_Auth_Sign . "\r\n" .
-                "Content-Type: application/json\r\n" .
-                "Accept: application/json'"
+            "X-Auth-Sign: " . $X_Auth_Sign . "\r\n" .
+            "Content-Type: application/json\r\n" .
+            "Accept: application/json'",
         ],
     ];
     $context = stream_context_create($options);
@@ -205,12 +203,11 @@ function get_payment_instruments($X_Auth_Token, $privateKey, $paymentOrderID)
     return $result;
 }
 
-
 /**
  * Шаг 3 – Выбор платежного инструмента
  *
  * @param str $X_Auth_Token
- * @param str $privateKey 
+ * @param str $privateKey
  * @param str $paymentOrderID
  * @param str $bank
  * @param str $payment_type
@@ -222,7 +219,7 @@ function get_payment_instruments($X_Auth_Token, $privateKey, $paymentOrderID)
  * set_payment_instruments($X_Auth_Token, $privateKey, $paymentOrderID, "tinkoff", "sbp", "1234" );
  * // Вывод:
  * {
-    "success": true,
+"success": true,
 }
  */
 function set_payment_instruments($X_Auth_Token, $privateKey, $paymentOrderID, $bank, $payment_type, $last_card_digits)
@@ -232,10 +229,10 @@ function set_payment_instruments($X_Auth_Token, $privateKey, $paymentOrderID, $b
         "id" => $paymentOrderID,
         "payment_instrument" => array(
             "bank" => $bank,
-            "payment_type" => $payment_type
+            "payment_type" => $payment_type,
         ),
         "customer_data" => array(
-            "last_card_digits" => $last_card_digits
+            "last_card_digits" => $last_card_digits,
         ),
     );
     $X_Auth_Sign = get_X_Auth_Sign(json_encode($data), $privateKey);
@@ -244,9 +241,9 @@ function set_payment_instruments($X_Auth_Token, $privateKey, $paymentOrderID, $b
             'method' => 'POST',
             'content' => json_encode($data),
             'header' => "X-Auth-Token: " . $X_Auth_Token . "\r\n" .
-                "X-Auth-Sign: " . $X_Auth_Sign . "\r\n" .
-                "Content-Type: application/json\r\n" .
-                "Accept: application/json'"
+            "X-Auth-Sign: " . $X_Auth_Sign . "\r\n" .
+            "Content-Type: application/json\r\n" .
+            "Accept: application/json'",
         ],
     ];
     $context = stream_context_create($options);
@@ -254,12 +251,11 @@ function set_payment_instruments($X_Auth_Token, $privateKey, $paymentOrderID, $b
     return $result;
 }
 
-
 /**
  * Шаг 4 – Подтверждение платежа
  *
  * @param str $X_Auth_Token
- * @param str $privateKey 
+ * @param str $privateKey
  * @param str $paymentOrderID
  * //Пример использования
  * $privateKey = file_get_contents('moneygate.key');
@@ -268,14 +264,14 @@ function set_payment_instruments($X_Auth_Token, $privateKey, $paymentOrderID, $b
  * confirm($X_Auth_Token, $privateKey, $paymentOrderID)
  * // Вывод:
  * {
-    "success": true,
-}
+ *   "success": true,
+ * }
  */
 function confirm($X_Auth_Token, $privateKey, $paymentOrderID)
 {
     $url = "https://moneygate.master.blowfish.api4ftx.cloud/v1/host-to-host/deposit-orders/confirm";
     $data = array(
-        "id" => $paymentOrderID
+        "id" => $paymentOrderID,
     );
     $X_Auth_Sign = get_X_Auth_Sign(json_encode($data), $privateKey);
     $options = [
@@ -283,9 +279,9 @@ function confirm($X_Auth_Token, $privateKey, $paymentOrderID)
             'method' => 'POST',
             'content' => json_encode($data),
             'header' => "X-Auth-Token: " . $X_Auth_Token . "\r\n" .
-                "X-Auth-Sign: " . $X_Auth_Sign . "\r\n" .
-                "Content-Type: application/json\r\n" .
-                "Accept: application/json'"
+            "X-Auth-Sign: " . $X_Auth_Sign . "\r\n" .
+            "Content-Type: application/json\r\n" .
+            "Accept: application/json'",
         ],
     ];
     $context = stream_context_create($options);
