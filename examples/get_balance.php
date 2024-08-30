@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 $privateKey = file_get_contents('moneygate.key');
-$X_Auth  = '<your_X-Auth-Token>';
+$X_Auth  = $_ENV['X-Auth-Token'];
 
 $t = new \sdk_moneygate\Auth($privateKey, '123') ;
 
