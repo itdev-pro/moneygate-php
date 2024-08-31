@@ -514,7 +514,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "homi/sdk_moneygate": 20
+        "homi/sdk_moneygate": 20,
+        "vlucas/phpdotenv": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

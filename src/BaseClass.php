@@ -3,20 +3,31 @@
 namespace sdk_moneygate;
 
 use sdk_moneygate\Auth;
-use sdk_moneygate\Request;
 
 /**
  * BaseClass
  */
 class BaseClass
 {
-    public Auth $auth;
-    public Request $request;
+    const STABLE_TEST_ENV = "https://moneygate.master.blowfish.api4ftx.cloud/v1/";
+    const PRODUCT_ENV = "https://moneygate.blowfish.api4ftx.cloud/v1/";
 
-    public function __construct(Auth $auth, bool $isTest = false)
+    private string $enviroment;
+    private $data;
+    public Auth $auth;
+
+    public $id;
+
+    public function __construct(Auth $auth, bool $isTest = false, string $id = null)
     {
         $this->auth = $auth;
-        $this->request = new Request(isTest: $isTest);
+        $this->enviroment = self::PRODUCT_ENV;
+        if ($isTest) {
+            $this->enviroment = self::STABLE_TEST_ENV;
+        }
+        if (!$id) {
+            $this->id = uniqid();
+        }
     }
 
     function getAuth()
@@ -24,9 +35,23 @@ class BaseClass
         return $this->auth;
     }
 
-    function getRequest()
+    function getId()
     {
-        return $this->request;
+        return $this->id;
     }
 
+    public function getData()
+    {
+        return json_encode($this->data);
+    }
+
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+    public function getEnviroment()
+    {
+        return $this->enviroment;
+    }
 }

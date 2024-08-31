@@ -10,52 +10,76 @@ use sdk_moneygate\BaseClass;
 
 class HostToHostDepositing extends BaseClass
 {
-    function get_options()
+    public function updateData()
+    {
+
+        $this->setData(array(
+            "id" => $this->getId(),
+            "service_id" => 6001,
+            "data" => array(
+                "callback_url" => "https://merchant-side.com/send-status-here",
+                "amount" => 100, // 100
+                "currency" => "RUB", //"RUB"
+            ),
+            "payment_instrument" => array(
+                "bank" => 'tinkoff',
+                "payment_type" => 'sbp',
+            ),
+            "customer_data" => array(
+                "customer_id" => "2a1bc47b-38d2-4631-9f8c-0d497081f1ca",
+                "card_no" => "1111222233334444",
+                "card_holder_name" => "John Smith",
+            ),
+
+        ));
+    }
+
+    public function get_options()
     {
         return [
             'http' => [
                 'method' => 'POST',
                 'content' => $this->auth->data,
                 'header' => "X-Auth-Token: " . $this->auth->getXAuthToken() . "\r\n" .
-                "X-Auth-Sign: " . $this->auth->get_X_Auth_Sign() . "\r\n" .
+                "X-Auth-Sign: " . $this->auth->get_X_Auth_Sign($this->getData()). "\r\n" .
                 "Content-Type: application/json\r\n" .
                 "Accept: application/json'",
             ],
         ];
     }
-    function create(): array
+    public function create()
     {
         $context = stream_context_create($this->get_options());
-        $result = file_get_contents(self::STABLE_TEST_ENV . '/deposit-orders/new', false, $context);
+        $result = file_get_contents($this->getEnviroment() . '/deposit-orders/new', false, $context);
+        return $result;//json_decode($result, true);
+    }
+
+    public function get_payment_instruments(): array
+    {
+
+        $context = stream_context_create($this->get_options());
+        $result = file_get_contents($this->getEnviroment() . "/deposit-orders/get-payment-instruments", false, $context);
         return json_decode($result, true);
     }
 
-    function get_payment_instruments(): array
-    {
-
-        $context = stream_context_create($this->get_options());
-        $result = file_get_contents(self::STABLE_TEST_ENV . "/deposit-orders/get-payment-instruments", false, $context);
-        return json_decode($result, true);
-    }
-
-    function set_payment_instruments()
+    public function set_payment_instruments()
     {
         $context = stream_context_create($this->get_options());
-        $result = file_get_contents(self::STABLE_TEST_ENV . "/deposit-orders/set-payment-instrument", false, $context);
+        $result = file_get_contents($this->getEnviroment() . "/deposit-orders/set-payment-instrument", false, $context);
         return $result;
     }
 
-    function confirm()
+    public function confirm()
     {
         $context = stream_context_create($this->get_options());
-        $result = file_get_contents(self::STABLE_TEST_ENV . "/deposit-orders/confirm", false, $context);
+        $result = file_get_contents($this->getEnviroment() . "/deposit-orders/confirm", false, $context);
         return $result;
     }
 
-    function get_status()
+    public function get_status()
     {
         $context = stream_context_create($this->get_options());
-        $result = file_get_contents(self::STABLE_TEST_ENV . "/withdraw-orders/get-status", false, $context);
+        $result = file_get_contents($this->getEnviroment() . "/withdraw-orders/get-status", false, $context);
         return $result;
     }
 

@@ -15,6 +15,12 @@ use sdk_moneygate\BaseClass;
 class Balance extends BaseClass
 {
 
+    public function updateData()
+    {
+        $this->setData(array(
+            "id" => $this->getId(),
+        ));
+    }
     /**
      * get_balance
      *
@@ -22,18 +28,19 @@ class Balance extends BaseClass
      */
     public function get_balance()
     {
+        $this->updateData();
         $options = [
             'http' => [
                 'method' => 'GET',
                 'header' => "X-Auth-Token: " . $this->auth->getXAuthToken() . "\r\n" .
-                "X-Auth-Sign: " . $this->auth->get_X_Auth_Sign() . "\r\n" .
-                "X-Request-ID: " . $this->auth->data . "\r\n" .
+                "X-Auth-Sign: " . $this->auth->get_X_Auth_Sign($this->getData()) . "\r\n" .
+                "X-Request-ID: " . $this->getData() . "\r\n" .
                 "Accept: application/json'",
 
             ],
         ];
         $context = stream_context_create($options);
-        $result = file_get_contents($this->request->getEnviroment() . 'balance', false, $context);
+        $result = file_get_contents($this->getEnviroment() . 'balance', false, $context);
 
         if ($result === false) {
             /* Handle error */

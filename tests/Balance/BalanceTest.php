@@ -18,11 +18,11 @@ class BalanceTest extends TestCase
         $dotenv->load();
 
         $privateKey = file_get_contents('/home/homi/my_projects/SDK_Moneygate_API/tests/Balance/moneygate.key');
-        $this->right_auth = new Auth($privateKey, '123', $_ENV['Token'],);
+        $this->right_auth = new Auth($privateKey, $_ENV['Token']);
         $this->right_balance = new Balance($this->right_auth,  true);
-        
+ 
         $privateKey = file_get_contents('/home/homi/my_projects/SDK_Moneygate_API/tests/Balance/wrong.key');
-        $this->wrong_auth = new Auth($privateKey, '123', $_ENV['Token']);
+        $this->wrong_auth = new Auth($privateKey, $_ENV['Token']);
         $this->wrong_balance = new Balance($this->wrong_auth, true);
 
     }
