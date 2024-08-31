@@ -4,29 +4,21 @@ namespace sdk_moneygate;
 
 /**
  * sdk_moneygate
- * 
+ *
  * for auth
- * 
+ *
  * @author Хомичук Михаил
  * @version 1.0.0
  */
 
 class Auth
 {
-    
-    /**
-     * privateKey
-     *
-     * @var mixed
-     */
-    public $privateKey;    
-    /**
-     * data
-     *
-     * @var mixed
-     */
+    public string $xAuthToken;
+
+    public $privateKey;
+
     public $data;
-    
+
     /**
      * __construct
      *
@@ -34,12 +26,13 @@ class Auth
      * @param  mixed $data
      * @return void
      */
-    function __construct(string $privateKey, string $data)
+    function __construct(string $privateKey, string $data, string $xAuthToken)
     {
         $this->privateKey = $privateKey;
         $this->data = $data;
+        $this->xAuthToken = $xAuthToken;
     }
-    
+
     /**
      * get_X_Auth_Sign
      *
@@ -53,5 +46,15 @@ class Auth
         // Преобразуем подпись в base64
         $base64Signature = base64_encode($signature);
         return $base64Signature;
+    }
+
+    function getXAuthToken(): string
+    {
+        return $this->xAuthToken;
+    }
+
+    function getData(): string
+    {
+        return $this->data;
     }
 }
