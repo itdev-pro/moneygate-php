@@ -1,10 +1,16 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 $privateKey = file_get_contents('moneygate.key');
-$X_Auth  = '<your_X-Auth-Token>';
+$X_Auth  = $_ENV['Token'];
 $data = json_encode(array(
-    "id" => '66ba50cf5d0a3', //66ba50cf5d0f0
+    "id" => '66ba50cf5d0a9', //66ba50cf5d0f0
     "service_id" => 6001,
         "data" => array(
             "callback_url" => "https://merchant-side.com/send-status-here",

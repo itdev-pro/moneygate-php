@@ -1,0 +1,1 @@
+{"version":1,"defects":{"BalanceTest::test_get_balance":7,"BalanceTest::test_right_get_balance":8,"BalanceTest::testRightGetBalance":7},"times":{"BalanceTest::test_get_balance":0.771,"BalanceTest::test_right_get_balance":0.354,"BalanceTest::testWrongGetBalance":0.39,"BalanceTest::testRightGetBalance":0.698}}

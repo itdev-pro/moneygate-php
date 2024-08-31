@@ -1,1 +1,15 @@
 # Test sdk_moneygate
+
+sudo apt-get install php-xml php-mbstring
+
+
+PHP Fatal error:  Uncaught Error: Call to undefined function each() in 
+/home/homi/my_projects/SDK_Moneygate_API/vendor/phpunit/phpunit/src/Util/Getopt.php:38
+
+while (list($i, $arg) = each($args)) > foreach ($args as $i => $arg) 
+
+
+run tests
+```sh
+$ vendor/bin/phpunit 
+```
