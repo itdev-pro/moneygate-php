@@ -75,16 +75,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mishaniahomi/sdk_moneygate.git",
-                "reference": "b96a2d5b2fa4e793342ffe58f9b76bb03327da5b"
+                "reference": "e0f3cc7443be4d87d4c2b7f69ce08c82a9649bd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mishaniahomi/sdk_moneygate/zipball/b96a2d5b2fa4e793342ffe58f9b76bb03327da5b",
-                "reference": "b96a2d5b2fa4e793342ffe58f9b76bb03327da5b",
+                "url": "https://api.github.com/repos/mishaniahomi/sdk_moneygate/zipball/e0f3cc7443be4d87d4c2b7f69ce08c82a9649bd1",
+                "reference": "e0f3cc7443be4d87d4c2b7f69ce08c82a9649bd1",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.3.6"
+                "php": ">=8.3.6",
+                "vlucas/phpdotenv": "^5.6@dev"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^11"
             },
             "default-branch": true,
             "type": "library",
@@ -104,7 +108,7 @@
                 "issues": "https://github.com/mishaniahomi/sdk_moneygate/issues",
                 "source": "https://github.com/mishaniahomi/sdk_moneygate/tree/main"
             },
-            "time": "2024-08-20T14:23:52+00:00"
+            "time": "2024-08-31T19:07:22+00:00"
         },
         {
             "name": "phpoption/phpoption",

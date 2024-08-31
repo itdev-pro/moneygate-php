@@ -34,12 +34,12 @@ class HostToHostDepositing extends BaseClass
         ));
     }
 
-    public function get_options()
+    public function getOptions()
     {
         return [
             'http' => [
                 'method' => 'POST',
-                'content' => $this->auth->data,
+                'content' => $this->getData(),
                 'header' => "X-Auth-Token: " . $this->auth->getXAuthToken() . "\r\n" .
                 "X-Auth-Sign: " . $this->auth->get_X_Auth_Sign($this->getData()). "\r\n" .
                 "Content-Type: application/json\r\n" .
@@ -47,39 +47,44 @@ class HostToHostDepositing extends BaseClass
             ],
         ];
     }
-    public function create()
-    {
-        $context = stream_context_create($this->get_options());
-        $result = file_get_contents($this->getEnviroment() . '/deposit-orders/new', false, $context);
-        return $result;//json_decode($result, true);
-    }
-
-    public function get_payment_instruments(): array
+    public function create(): array
     {
 
-        $context = stream_context_create($this->get_options());
-        $result = file_get_contents($this->getEnviroment() . "/deposit-orders/get-payment-instruments", false, $context);
+        $this->updateData();
+        $context = stream_context_create($this->getOptions());
+        $result = file_get_contents($this->getEnviroment() . 'host-to-host/deposit-orders/new', false, $context);
         return json_decode($result, true);
     }
 
-    public function set_payment_instruments()
+    public function getPaymentInstruments(): array
     {
-        $context = stream_context_create($this->get_options());
-        $result = file_get_contents($this->getEnviroment() . "/deposit-orders/set-payment-instrument", false, $context);
+        // $this->updateData();
+        $context = stream_context_create($this->getOptions());
+        $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/get-payment-instruments", false, $context);
+        return json_decode($result, true);
+    }
+
+    public function setPaymentInstruments()
+    {
+        $this->updateData();
+        $context = stream_context_create($this->getOptions());
+        $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/set-payment-instrument", false, $context);
         return $result;
     }
 
     public function confirm()
     {
-        $context = stream_context_create($this->get_options());
-        $result = file_get_contents($this->getEnviroment() . "/deposit-orders/confirm", false, $context);
+        $this->updateData();
+        $context = stream_context_create($this->getOptions());
+        $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/confirm", false, $context);
         return $result;
     }
 
-    public function get_status()
+    public function getStatus()
     {
-        $context = stream_context_create($this->get_options());
-        $result = file_get_contents($this->getEnviroment() . "/withdraw-orders/get-status", false, $context);
+        $this->updateData();
+        $context = stream_context_create($this->getOptions());
+        $result = file_get_contents($this->getEnviroment() . "host-to-host/withdraw-orders/get-status", false, $context);
         return $result;
     }
 

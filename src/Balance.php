@@ -22,11 +22,11 @@ class Balance extends BaseClass
         ));
     }
     /**
-     * get_balance
+     * getBalance
      *
      * @return array
      */
-    public function get_balance()
+    public function getBalance(): array
     {
         $this->updateData();
         $options = [

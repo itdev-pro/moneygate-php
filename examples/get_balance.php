@@ -8,10 +8,7 @@ $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 $privateKey = file_get_contents('moneygate.key');
-$X_Auth = $_ENV['Token'];
+$auth = new \sdk_moneygate\Auth($privateKey, $_ENV['Token']);
+$balance = new \sdk_moneygate\Balance($auth, true);
 
-$t = new \sdk_moneygate\Auth($privateKey, '123');
-
-$balance = new \sdk_moneygate\Balance($t, $X_Auth);
-
-echo $balance->get_balance();
+var_dump($balance->getBalance());
