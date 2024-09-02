@@ -14,13 +14,6 @@ use sdk_moneygate\BaseClass;
  */
 class Balance extends BaseClass
 {
-
-    public function updateData()
-    {
-        $this->setData(array(
-            "id" => $this->getId(),
-        ));
-    }
     /**
      * getBalance
      *

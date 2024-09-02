@@ -2,6 +2,7 @@
 
 /**
  * for depositing money using the host-to-host method
+ * Внесение денежных средств по методу host-to-host
  */
 
 namespace sdk_moneygate;
@@ -10,14 +11,6 @@ use sdk_moneygate\BaseClass;
 
 class HostToHostDepositing extends BaseClass
 {
-    public function updateData($data)
-    {
-        $array = array_merge([
-            "id" => $this->getId(),
-            "service_id" => 6001,
-        ], $data);
-        $this->setData($array);
-    }
 
     public function getOptions()
     {
@@ -39,8 +32,8 @@ class HostToHostDepositing extends BaseClass
         $this->setCurrency($currency);
         $data = ["data" => [
             "callback_url" => $this->getCallbackUrl(),
-            "amount" => $this->getAmount(), // 100
-            "currency" => $this->getCurrency(), //"RUB"
+            "amount" => $this->getAmount(),
+            "currency" => $this->getCurrency(),
         ]];
         $this->updateData($data);
         $context = stream_context_create($this->getOptions());
@@ -76,7 +69,7 @@ class HostToHostDepositing extends BaseClass
         if ($paymentType == "card2card") {
             $paymentInstrument["bank"] = $bank;
             $customerData["last_card_digits"] = $last_card_digits;
-        } else if ($paymentType == "") {
+        } else if ($paymentType == "sbp") {
             $customerData["bank"] = $bank;
         }
 

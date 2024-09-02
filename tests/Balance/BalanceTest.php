@@ -19,8 +19,7 @@ class BalanceTest extends TestCase
 
     public function testWrongGetBalance()
     {
-        $privateKey = file_get_contents('/home/homi/my_projects/SDK_Moneygate_API/tests/Balance/wrong.key');
-        $auth = new Auth($privateKey, $_ENV['Token']);
+        $auth = new Auth($_ENV['wronkPrivateKey'], $_ENV['Token']);
         $balance = new Balance($auth, true);
         $auth_error_result = [
             'error' => 'auth error',
@@ -31,9 +30,7 @@ class BalanceTest extends TestCase
 
     public function testRightGetBalance()
     {
-
-        $privateKey = file_get_contents('/home/homi/my_projects/SDK_Moneygate_API/tests/Balance/moneygate.key');
-        $auth = new Auth($privateKey, $_ENV['Token']);
+        $auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
         $balance = new Balance($auth, true);
         $result = $balance->getBalance();
         $this->assertArrayHasKey('data', $result);

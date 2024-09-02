@@ -93,4 +93,13 @@ class BaseClass
     {
         return $this->currency;
     }
+
+    public function updateData(array $data = [])
+    {
+        $array = array_merge([
+            "id" => $this->getId(),
+            "service_id" => 6001,
+        ], $data);
+        $this->setData($array);
+    }
 }
