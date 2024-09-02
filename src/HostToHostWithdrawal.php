@@ -35,6 +35,7 @@ class HostToHostWithdrawal extends BaseClass
             "amount" => $this->getAmount(),
             "currency" => $this->getCurrency(),
         ]];
+        $this->updateData($data);
         $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . 'host-to-host/withdraw-orders/new', false, $context);
         return json_decode($result, true);
@@ -80,7 +81,6 @@ class HostToHostWithdrawal extends BaseClass
             "payment_instrument" => $paymentInstrument,
             "customer_data" => $customerData,
         ]);
-        var_dump($this->getData()) ;
         $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . "host-to-host/withdraw-orders/set-payment-instrument", false, $context);
         return json_decode($result, true);
