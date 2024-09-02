@@ -11,25 +11,12 @@ use sdk_moneygate\BaseClass;
 
 class HostToHostDepositing extends BaseClass
 {
-
-    public function getOptions()
-    {
-        return [
-            'http' => [
-                'method' => 'POST',
-                'content' => $this->getData(),
-                'header' => "X-Auth-Token: " . $this->auth->getXAuthToken() . "\r\n" .
-                "X-Auth-Sign: " . $this->auth->get_X_Auth_Sign($this->getData()) . "\r\n" .
-                "Content-Type: application/json\r\n" .
-                "Accept: application/json'",
-            ],
-        ];
-    }
     public function create(string $callbackUrl = "https://merchant-side.com/send-status-here", int $amount = 100, string $currency = "RUB"): array
     {
         $this->setCallbackUrl($callbackUrl);
         $this->setAmount($amount);
         $this->setCurrency($currency);
+        $this->setMethod("POST");
         $data = ["data" => [
             "callback_url" => $this->getCallbackUrl(),
             "amount" => $this->getAmount(),
@@ -46,6 +33,7 @@ class HostToHostDepositing extends BaseClass
         if ($id) {
             $this->setId($id);
         }
+        $this->setMethod("POST");
         $this->updateData([]);
         $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/get-payment-instruments", false, $context);
@@ -77,6 +65,7 @@ class HostToHostDepositing extends BaseClass
             "payment_instrument" => $paymentInstrument,
             "customer_data" => $customerData,
         ]);
+        $this->setMethod("POST");
         $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/set-payment-instrument", false, $context);
         return json_decode($result, true);
@@ -88,6 +77,7 @@ class HostToHostDepositing extends BaseClass
             $this->setId($id);
         }
         $this->updateData([]);
+        $this->setMethod("POST");
         $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/confirm", false, $context);
         return json_decode($result, true);
@@ -99,6 +89,7 @@ class HostToHostDepositing extends BaseClass
             $this->setId($id);
         }
         $this->updateData([]);
+        $this->setMethod("POST");
         $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . "host-to-host/withdraw-orders/get-status", false, $context);
         return json_decode($result, true);

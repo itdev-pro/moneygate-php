@@ -10,23 +10,8 @@ use sdk_moneygate\BaseClass;
 
 class SynchronousHostToHostDepositing extends BaseClass
 {
-    public function getOptions()
-    {
-        return [
-            'http' => [
-                'method' => 'POST',
-                'content' => $this->getData(),
-                'header' => "X-Auth-Token: " . $this->auth->getXAuthToken() . "\r\n" .
-                "X-Auth-Sign: " . $this->auth->get_X_Auth_Sign($this->getData()) . "\r\n" .
-                "Content-Type: application/json\r\n" .
-                "Accept: application/json'",
-            ],
-        ];
-    }
-
-    public function create(string $callbackUrl = "https://merchant-side.com/send-status-here", int $amount = 100, 
-    string $currency = "RUB", string $paymentType = "card2card", string $bank = '', string $customer_id = ''): array
-    {
+    public function create(string $callbackUrl = "https://merchant-side.com/send-status-here", int $amount = 100,
+        string $currency = "RUB", string $paymentType = "card2card", string $bank = '', string $customer_id = ''): array {
         $this->setCallbackUrl($callbackUrl);
         $this->setAmount($amount);
         $this->setCurrency($currency);
@@ -46,8 +31,33 @@ class SynchronousHostToHostDepositing extends BaseClass
             "customer_data" => $customerData,
         ]];
         $this->updateData($data);
+        $this->setMethod("POST");
         $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . 'sync/deposit-orders/new', false, $context);
+        return json_decode($result, true);
+    }
+
+    public function getPaymentInstruments(): array
+    {
+        $this->setMethod("POST");
+        $data = ["filters" => [
+            "currency" => "TRY",
+        ]];
+        $this->updateData($data);
+        $context = stream_context_create($this->getOptions());
+        $result = file_get_contents($this->getEnviroment() . "sync/deposit-orders/get-payment-instruments", false, $context);
+        return json_decode($result, true);
+    }
+
+    public function getStatus(string $id = null)
+    {
+        if ($id) {
+            $this->setId($id);
+        }
+        $this->updateData([]);
+        $this->setMethod("POST");
+        $context = stream_context_create($this->getOptions());
+        $result = file_get_contents($this->getEnviroment() . "sync/deposit-orders/get-status", false, $context);
         return json_decode($result, true);
     }
 

@@ -12,6 +12,7 @@ class BaseClass
     const STABLE_TEST_ENV = "https://moneygate.master.blowfish.api4ftx.cloud/v1/";
     const PRODUCT_ENV = "https://moneygate.blowfish.api4ftx.cloud/v1/";
 
+    private string $method;
     private string $enviroment;
     private $data;
     public Auth $auth;
@@ -101,5 +102,27 @@ class BaseClass
             "service_id" => 6001,
         ], $data);
         $this->setData($array);
+    }
+
+    public function getOptions()
+    {
+        return [
+            'http' => [
+                'method' => $this->getMethod(),
+                'content' => $this->getData(),
+                'header' => "X-Auth-Token: " . $this->auth->getXAuthToken() . "\r\n" .
+                "X-Auth-Sign: " . $this->auth->get_X_Auth_Sign($this->getData()) . "\r\n" .
+                "Content-Type: application/json\r\n" .
+                "Accept: application/json'",
+            ],
+        ];
+    }
+
+    public function setMethod(string $method){
+        $this->method = $method;
+    }
+
+    public function getMethod(){
+        return $this->method;
     }
 }
