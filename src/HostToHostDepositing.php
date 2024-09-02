@@ -81,28 +81,34 @@ class HostToHostDepositing extends BaseClass
         }
 
         $this->updateData([
-            "payment_instrument"=> $paymentInstrument,
-            "customer_data"=> $customerData
+            "payment_instrument" => $paymentInstrument,
+            "customer_data" => $customerData,
         ]);
         $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/set-payment-instrument", false, $context);
         return json_decode($result, true);
     }
 
-    public function confirm()
+    public function confirm(string $id = null)
     {
-        $this->updateData();
+        if ($id) {
+            $this->setId($id);
+        }
+        $this->updateData([]);
         $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/confirm", false, $context);
-        return $result;
+        return json_decode($result, true);
     }
 
-    public function getStatus()
+    public function getStatus(string $id = null)
     {
-        $this->updateData();
+        if ($id) {
+            $this->setId($id);
+        }
+        $this->updateData([]);
         $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . "host-to-host/withdraw-orders/get-status", false, $context);
-        return $result;
+        return json_decode($result, true);
     }
 
 }

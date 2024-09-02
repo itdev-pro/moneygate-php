@@ -85,4 +85,22 @@ class HostToHostDepositingTest extends TestCase
         }
     }
 
+    public function testHostToHostDepositingConfirm(): void
+    {
+        if (self::$sbp or self::$card2card) {
+            $testConfirm = new HostToHostDepositing($this->right_auth, true);
+            $resultConfirm = $testConfirm->confirm(self::$id);
+            $this->assertArrayHasKey('success', $resultConfirm);
+            $this->assertEquals('true', $resultConfirm['success']);
+        }
+    }
+
+    public function testHostToHostDepositingGetStatus(): void
+    {
+        $testGetStatus = new HostToHostDepositing($this->right_auth, true);
+        $resultGetStatusm = $testGetStatus->getStatus(self::$id);
+        $this->assertArrayHasKey('status', $resultGetStatusm);
+        $this->assertNotEquals('error', $resultGetStatusm['status']);
+    }
+
 }
