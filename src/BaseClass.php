@@ -18,6 +18,12 @@ class BaseClass
 
     public $id;
 
+    private $callbackUrl;
+
+    private $amount;
+
+    private $currency;
+
     public function __construct(Auth $auth, bool $isTest = false, string $id = null)
     {
         $this->auth = $auth;
@@ -33,6 +39,11 @@ class BaseClass
     function getAuth()
     {
         return $this->auth;
+    }
+
+    function setId(string $id)
+    {
+        $this->id = $id;
     }
 
     function getId()
@@ -53,5 +64,33 @@ class BaseClass
     public function getEnviroment()
     {
         return $this->enviroment;
+    }
+
+    public function setCallbackUrl(string $callbackUrl)
+    {
+        $this->callbackUrl = $callbackUrl;
+    }
+
+    public function getCallbackUrl()
+    {
+        return $this->callbackUrl;
+    }
+
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+    }
+
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+    public function setCurrency(string $currency)
+    {
+        $this->currency = $currency;
+    }
+    public function getCurrency()
+    {
+        return $this->currency;
     }
 }
