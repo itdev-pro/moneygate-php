@@ -15,7 +15,7 @@ $composer require homi/sdk_moneygate
 ```
 Example
 ------
-```bash
+```php
 <?php 
 use Dotenv\Dotenv;
 use sdk_moneygate\Auth;
