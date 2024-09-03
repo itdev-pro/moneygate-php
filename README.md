@@ -13,14 +13,30 @@ The recommended way to install this is through [composer](http://getcomposer.org
 ```bash
 $composer require homi/sdk_moneygate
 ```
-Examples
+Example
 ------
 ```bash
-require __DIR__ . '/../vendor/autoload.php';
-$privateKey = file_get_contents('moneygate.key');
-$X_Auth  = '<your_X-Auth-Token>';
+<?php 
+use Dotenv\Dotenv;
+use sdk_moneygate\Auth;
+use sdk_moneygate\Balance;
 
-$t = new \sdk_moneygate\Auth($privateKey, '123') ;
+class BalanceExample
+{
+    public function getBalanceExample(): array
+    {
+        $dotenv = Dotenv::createImmutable(__DIR__);
+        $dotenv->load();
+
+        $auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+
+        $result = new Balance($auth, true);
+
+        return $result;
+    }
+}
+
+
 ```
 Usage
 ------
