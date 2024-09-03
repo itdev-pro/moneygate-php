@@ -35,7 +35,7 @@ class BalanceExample
         return $result;
     }
 }
-
+?>
 
 ```
 Usage
