@@ -27,7 +27,13 @@ class HostToHostDepositing extends BaseClass
         $result = file_get_contents($this->getEnviroment() . 'host-to-host/deposit-orders/new', false, $context);
         return json_decode($result, true);
     }
-
+    
+    /**
+     * getPaymentInstruments
+     *
+     * @param  mixed $id
+     * @return array
+     */
     public function getPaymentInstruments(string $id = null): array
     {
         if ($id) {
@@ -39,7 +45,17 @@ class HostToHostDepositing extends BaseClass
         $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/get-payment-instruments", false, $context);
         return json_decode($result, true);
     }
-
+    
+    /**
+     * setPaymentInstruments
+     *
+     * @param  mixed $id
+     * @param  mixed $paymentType
+     * @param  mixed $bank
+     * @param  mixed $customer_id
+     * @param  mixed $last_card_digits
+     * @return array
+     */
     public function setPaymentInstruments(string $id = null, string $paymentType = "card2card", string $bank = '', string $customer_id = '', string $last_card_digits = ''): array
     {
         if ($id) {
@@ -70,7 +86,13 @@ class HostToHostDepositing extends BaseClass
         $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/set-payment-instrument", false, $context);
         return json_decode($result, true);
     }
-
+    
+    /**
+     * confirm
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function confirm(string $id = null)
     {
         if ($id) {
@@ -82,7 +104,13 @@ class HostToHostDepositing extends BaseClass
         $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/confirm", false, $context);
         return json_decode($result, true);
     }
-
+    
+    /**
+     * getStatus
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function getStatus(string $id = null)
     {
         if ($id) {

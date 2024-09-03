@@ -14,15 +14,15 @@ use sdk_moneygate\BaseClass;
  */
 class Balance extends BaseClass
 {
+    
     /**
-     * getBalance
+     * getOptions
      *
      * @return array
      */
-    public function getBalance(): array
+    public function getOptions(): array
     {
-        $this->updateData();
-        $options = [
+        return [
             'http' => [
                 'method' => 'GET',
                 'header' => "X-Auth-Token: " . $this->auth->getXAuthToken() . "\r\n" .
@@ -32,7 +32,16 @@ class Balance extends BaseClass
 
             ],
         ];
-        $context = stream_context_create($options);
+    }
+    /**
+     * getBalance
+     *
+     * @return array
+     */
+    public function getBalance(): array
+    {
+        $this->updateData();
+        $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . 'balance', false, $context);
 
         if ($result === false) {

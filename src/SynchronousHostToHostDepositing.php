@@ -36,7 +36,12 @@ class SynchronousHostToHostDepositing extends BaseClass
         $result = file_get_contents($this->getEnviroment() . 'sync/deposit-orders/new', false, $context);
         return json_decode($result, true);
     }
-
+    
+    /**
+     * getPaymentInstruments
+     *
+     * @return array
+     */
     public function getPaymentInstruments(): array
     {
         $this->setMethod("POST");
@@ -48,7 +53,13 @@ class SynchronousHostToHostDepositing extends BaseClass
         $result = file_get_contents($this->getEnviroment() . "sync/deposit-orders/get-payment-instruments", false, $context);
         return json_decode($result, true);
     }
-
+    
+    /**
+     * getStatus
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function getStatus(string $id = null)
     {
         if ($id) {

@@ -24,7 +24,15 @@ class BaseClass
     private $amount;
 
     private $currency;
-
+    
+    /**
+     * __construct
+     *
+     * @param  mixed $auth
+     * @param  mixed $isTest
+     * @param  mixed $id
+     * @return void
+     */
     public function __construct(Auth $auth, bool $isTest = false, string $id = null)
     {
         $this->auth = $auth;
@@ -36,65 +44,136 @@ class BaseClass
             $this->id = uniqid();
         }
     }
-
+    
+    /**
+     * getAuth
+     *
+     * @return void
+     */
     function getAuth()
     {
         return $this->auth;
     }
-
+    
+    /**
+     * setId
+     *
+     * @param  mixed $id
+     * @return void
+     */
     function setId(string $id)
     {
         $this->id = $id;
     }
-
+    
+    /**
+     * getId
+     *
+     * @return void
+     */
     function getId()
     {
         return $this->id;
     }
-
+    
+    /**
+     * getData
+     *
+     * @return void
+     */
     public function getData()
     {
         return json_encode($this->data);
     }
-
+    
+    /**
+     * setData
+     *
+     * @param  mixed $data
+     * @return void
+     */
     public function setData($data)
     {
         $this->data = $data;
     }
-
+    
+    /**
+     * getEnviroment
+     *
+     * @return void
+     */
     public function getEnviroment()
     {
         return $this->enviroment;
     }
-
+    
+    /**
+     * setCallbackUrl
+     *
+     * @param  mixed $callbackUrl
+     * @return void
+     */
     public function setCallbackUrl(string $callbackUrl)
     {
         $this->callbackUrl = $callbackUrl;
     }
-
+    
+    /**
+     * getCallbackUrl
+     *
+     * @return void
+     */
     public function getCallbackUrl()
     {
         return $this->callbackUrl;
     }
-
+    
+    /**
+     * setAmount
+     *
+     * @param  mixed $amount
+     * @return void
+     */
     public function setAmount($amount)
     {
         $this->amount = $amount;
     }
-
+    
+    /**
+     * getAmount
+     *
+     * @return void
+     */
     public function getAmount()
     {
         return $this->amount;
-    }
+    }    
+    /**
+     * setCurrency
+     *
+     * @param  mixed $currency
+     * @return void
+     */
     public function setCurrency(string $currency)
     {
         $this->currency = $currency;
-    }
+    }    
+    /**
+     * getCurrency
+     *
+     * @return void
+     */
     public function getCurrency()
     {
         return $this->currency;
     }
-
+    
+    /**
+     * updateData
+     *
+     * @param  mixed $data
+     * @return void
+     */
     public function updateData(array $data = [])
     {
         $array = array_merge([
@@ -103,8 +182,13 @@ class BaseClass
         ], $data);
         $this->setData($array);
     }
-
-    public function getOptions()
+    
+    /**
+     * getOptions
+     *
+     * @return array
+     */
+    public function getOptions(): array
     {
         return [
             'http' => [
@@ -117,11 +201,22 @@ class BaseClass
             ],
         ];
     }
-
+    
+    /**
+     * setMethod
+     *
+     * @param  mixed $method
+     * @return void
+     */
     public function setMethod(string $method){
         $this->method = $method;
     }
-
+    
+    /**
+     * getMethod
+     *
+     * @return void
+     */
     public function getMethod(){
         return $this->method;
     }

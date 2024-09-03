@@ -9,13 +9,20 @@ namespace sdk_moneygate;
 
 use sdk_moneygate\BaseClass;
 
+/**
+ * OnSiteRedirectDepositing
+ */
 class OnSiteRedirectDepositing extends BaseClass
-{
+{    
+    /**
+     * create
+     *
+     * @return void
+     */
     public function create(
         string $callbackUrl = "https://merchant-side.com/send-status-here",
         string $success_url = "https://front-merchant-side.com/for-successfull-payment",
         string $fail_url = "https://front-merchant-side.com/for-failture-payment",
-
         int $amount = 100,
         string $currency = "RUB",
         string $paymentType = "card2card",
@@ -51,7 +58,13 @@ class OnSiteRedirectDepositing extends BaseClass
         $result = file_get_contents($this->getEnviroment() . 'on-site-redirect/send', false, $context);
         return json_decode($result, true);
     }
-
+    
+    /**
+     * getStatus
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function getStatus(string $id = null)
     {
         if ($id) {

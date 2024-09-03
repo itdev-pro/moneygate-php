@@ -27,7 +27,13 @@ class HostToHostWithdrawal extends BaseClass
         $result = file_get_contents($this->getEnviroment() . 'host-to-host/withdraw-orders/new', false, $context);
         return json_decode($result, true);
     }
-
+    
+    /**
+     * getPaymentInstruments
+     *
+     * @param  mixed $id
+     * @return array
+     */
     public function getPaymentInstruments(string $id = null): array
     {
         if ($id) {
@@ -39,7 +45,14 @@ class HostToHostWithdrawal extends BaseClass
         $result = file_get_contents($this->getEnviroment() . "host-to-host/withdraw-orders/get-payment-instruments", false, $context);
         return json_decode($result, true);
     }
-
+    
+    /**
+     * setPaymentInstruments
+     *
+     * @param  mixed $id
+     * @param  mixed $paymentType
+     * @return void
+     */
     public function setPaymentInstruments(string $id = null, string $paymentType = "card2card",
         string $bank = '', string $customer_id = '', string $card_no = '', string $card_holder_name = '',
         string $phone = ''): array {
@@ -73,7 +86,13 @@ class HostToHostWithdrawal extends BaseClass
         $result = file_get_contents($this->getEnviroment() . "host-to-host/withdraw-orders/set-payment-instrument", false, $context);
         return json_decode($result, true);
     }
-
+    
+    /**
+     * confirm
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function confirm(string $id = null)
     {
         if ($id) {
@@ -85,7 +104,13 @@ class HostToHostWithdrawal extends BaseClass
         $result = file_get_contents($this->getEnviroment() . "host-to-host/withdraw-orders/confirm", false, $context);
         return json_decode($result, true);
     }
-
+    
+    /**
+     * getStatus
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function getStatus(string $id = null)
     {
         if ($id) {
