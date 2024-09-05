@@ -1,20 +1,26 @@
 # Moneygate PHP SDK
 
-PHP-SDK to interact with Moneygate API
+![social_preview](docs/img/640_320.png)
+
+PHP SDK to interact with Moneygate API
+
+Moneygate API documentation available [here](https://docs.master.blowfish.api4ftx.cloud/)
 
 
-## Developer Documentation ##
+
+## Developer Documentation
 
 The [docs folder](docs/) provides detailed guides for using this library.
 
-## Installation ##
+## Installation 
 This library can be found on [Packagist](https://packagist.org/packages/homi/sdk_moneygate).
 The recommended way to install this is through [composer](http://getcomposer.org).
 ```bash
 $composer require homi/sdk_moneygate
 ```
-Example
-------
+
+## Quick start
+
 ```php
 <?php 
 use Dotenv\Dotenv;
@@ -38,12 +44,12 @@ class BalanceExample
 ?>
 
 ```
-Usage
-------
-For usage, please see the examples.
+## Examples
 
-Tests
-------
+[Usage examples available here](examples/)
+
+## Tests
+
 ```bash
 vendor/bin/phpunit
 ```
