@@ -27,6 +27,7 @@ class OnSiteRedirectDepositing extends BaseClass
         string $bank = '',
         string $customer_id = '',
         $value = null,
+        string $id = null,
     ): array {
         $this->setCallbackUrl($callbackUrl);
         $this->setAmount($amount);
@@ -39,6 +40,9 @@ class OnSiteRedirectDepositing extends BaseClass
         $customerData = [
             "customer_id" => $customer_id,
         ];
+        if ($id) {
+            $this->setId($id);
+        }
         $data = [
             "value" => $value,
             "data" => [
@@ -52,6 +56,7 @@ class OnSiteRedirectDepositing extends BaseClass
             ]];
         $this->updateData($data);
         $this->setMethod("POST");
+
         $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . 'on-site-redirect/send', false, $context);
         return json_decode($result, true);
