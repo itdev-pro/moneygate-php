@@ -1,6 +1,6 @@
-# sdk_moneygate
+# Moneygate PHP SDK
 
-PHP-SDK library for work with Moneygate API
+PHP-SDK to interact with Moneygate API
 
 
 ## Developer Documentation ##
