@@ -48,10 +48,10 @@ class SynchronousHostToHostDepositingTest extends TestCase
     public function testSynchronousHostToHostDepositingGetStatus(): void
     {
         $testGetStatus = new SynchronousHostToHostDepositing($this->auth, true);
-        $resultGetStatusm = $testGetStatus->getStatus(self::$id);
-        $this->assertArrayHasKey('status', $resultGetStatusm);
-        $this->assertArrayHasKey('id', $resultGetStatusm);
-        $this->assertEquals(self::$id, $resultGetStatusm['id']);
+        $resultGetStatus = $testGetStatus->getStatus(self::$id);
+        $this->assertArrayHasKey('status', $resultGetStatus);
+        $this->assertArrayHasKey('id', $resultGetStatus);
+        $this->assertEquals(self::$id, $resultGetStatus['id']);
     }
 
 }

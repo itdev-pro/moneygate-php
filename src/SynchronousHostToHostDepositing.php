@@ -58,9 +58,9 @@ class SynchronousHostToHostDepositing extends BaseClass
      * getStatus
      *
      * @param  mixed $id
-     * @return void
+     * @return array
      */
-    public function getStatus(string $id = null)
+    public function getStatus(string $id = null): array
     {
         if ($id) {
             $this->setId($id);

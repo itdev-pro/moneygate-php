@@ -17,11 +17,9 @@ class OnSiteRedirectDepositing extends BaseClass
     /**
      * create
      *
-     * @return void
+     * @return array
      */
-    public function create(
-        string $callbackUrl = "https://merchant-side.com/send-status-here",
-        string $success_url = "https://front-merchant-side.com/for-successfull-payment",
+    public function create( string $callbackUrl = "https://merchant-side.com/send-status-here", string $success_url = "https://front-merchant-side.com/for-successfull-payment",
         string $fail_url = "https://front-merchant-side.com/for-failture-payment",
         int $amount = 100,
         string $currency = "RUB",
@@ -59,13 +57,14 @@ class OnSiteRedirectDepositing extends BaseClass
         return json_decode($result, true);
     }
     
+      
     /**
      * getStatus
      *
      * @param  mixed $id
-     * @return void
+     * @return array
      */
-    public function getStatus(string $id = null)
+    public function getStatus(string $id = null): array
     {
         if ($id) {
             $this->setId($id);

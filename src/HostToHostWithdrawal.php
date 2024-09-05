@@ -51,7 +51,7 @@ class HostToHostWithdrawal extends BaseClass
      *
      * @param  mixed $id
      * @param  mixed $paymentType
-     * @return void
+     * @return array
      */
     public function setPaymentInstruments(string $id = null, string $paymentType = "card2card",
         string $bank = '', string $customer_id = '', string $card_no = '', string $card_holder_name = '',
@@ -91,9 +91,9 @@ class HostToHostWithdrawal extends BaseClass
      * confirm
      *
      * @param  mixed $id
-     * @return void
+     * @return array
      */
-    public function confirm(string $id = null)
+    public function confirm(string $id = null): array
     {
         if ($id) {
             $this->setId($id);
@@ -109,9 +109,9 @@ class HostToHostWithdrawal extends BaseClass
      * getStatus
      *
      * @param  mixed $id
-     * @return void
+     * @return array
      */
-    public function getStatus(string $id = null)
+    public function getStatus(string $id = null): array
     {
         if ($id) {
             $this->setId($id);
