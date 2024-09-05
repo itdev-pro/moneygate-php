@@ -27,7 +27,7 @@ class HostToHostWithdrawal extends BaseClass
         $result = file_get_contents($this->getEnviroment() . 'host-to-host/withdraw-orders/new', false, $context);
         return json_decode($result, true);
     }
-    
+
     /**
      * getPaymentInstruments
      *
@@ -45,7 +45,7 @@ class HostToHostWithdrawal extends BaseClass
         $result = file_get_contents($this->getEnviroment() . "host-to-host/withdraw-orders/get-payment-instruments", false, $context);
         return json_decode($result, true);
     }
-    
+
     /**
      * setPaymentInstruments
      *
@@ -86,7 +86,7 @@ class HostToHostWithdrawal extends BaseClass
         $result = file_get_contents($this->getEnviroment() . "host-to-host/withdraw-orders/set-payment-instrument", false, $context);
         return json_decode($result, true);
     }
-    
+
     /**
      * confirm
      *
@@ -104,7 +104,7 @@ class HostToHostWithdrawal extends BaseClass
         $result = file_get_contents($this->getEnviroment() . "host-to-host/withdraw-orders/confirm", false, $context);
         return json_decode($result, true);
     }
-    
+
     /**
      * getStatus
      *

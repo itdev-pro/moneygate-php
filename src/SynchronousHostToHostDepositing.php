@@ -36,7 +36,7 @@ class SynchronousHostToHostDepositing extends BaseClass
         $result = file_get_contents($this->getEnviroment() . 'sync/deposit-orders/new', false, $context);
         return json_decode($result, true);
     }
-    
+
     /**
      * getPaymentInstruments
      *
@@ -53,7 +53,7 @@ class SynchronousHostToHostDepositing extends BaseClass
         $result = file_get_contents($this->getEnviroment() . "sync/deposit-orders/get-payment-instruments", false, $context);
         return json_decode($result, true);
     }
-    
+
     /**
      * getStatus
      *
