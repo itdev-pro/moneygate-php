@@ -91,9 +91,9 @@ class HostToHostDepositing extends BaseClass
      * confirm
      *
      * @param  mixed $id
-     * @return void
+     * @return array
      */
-    public function confirm(string $id = null)
+    public function confirm(string $id = null): array
     {
         if ($id) {
             $this->setId($id);
@@ -109,9 +109,9 @@ class HostToHostDepositing extends BaseClass
      * getStatus
      *
      * @param  mixed $id
-     * @return void
+     * @return array
      */
-    public function getStatus(string $id = null)
+    public function getStatus(string $id = null): array
     {
         if ($id) {
             $this->setId($id);

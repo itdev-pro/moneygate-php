@@ -14,9 +14,11 @@ use sdk_moneygate\BaseClass;
  */
 class Balance extends BaseClass
 {
-    
+
     /**
      * getOptions
+     *
+     * redefined the function for getting parameters
      *
      * @return array
      */

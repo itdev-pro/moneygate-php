@@ -3,7 +3,6 @@ composer.phar
 /examples/moneygate.key
 /examples/vendor
 /examples/.env
-/tests/vendor
 .env
 /tests/Balance
 .phpunit.result.cache

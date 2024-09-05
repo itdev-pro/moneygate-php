@@ -96,9 +96,9 @@ class HostToHostDepositingTest extends TestCase
     public function testHostToHostDepositingGetStatus(): void
     {
         $testGetStatus = new HostToHostDepositing($this->auth, true);
-        $resultGetStatusm = $testGetStatus->getStatus(self::$id);
-        $this->assertArrayHasKey('status', $resultGetStatusm);
-        $this->assertNotEquals('error', $resultGetStatusm['status']);
+        $resultGetStatus = $testGetStatus->getStatus(self::$id);
+        $this->assertArrayHasKey('status', $resultGetStatus);
+        $this->assertNotEquals('error', $resultGetStatus['status']);
     }
 
 }

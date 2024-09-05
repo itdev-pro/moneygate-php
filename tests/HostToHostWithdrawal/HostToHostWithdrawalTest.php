@@ -94,9 +94,9 @@ class HostToHostWithdrawalTest extends TestCase
     public function testHostToHostWithdrawalGetStatus(): void
     {
         $testGetStatus = new HostToHostWithdrawal($this->auth, true);
-        $resultGetStatusm = $testGetStatus->getStatus(self::$id);
-        $this->assertArrayHasKey('status', $resultGetStatusm);
-        $this->assertNotEquals('error', $resultGetStatusm['status']);
+        $resultGetStatus = $testGetStatus->getStatus(self::$id);
+        $this->assertArrayHasKey('status', $resultGetStatus);
+        $this->assertNotEquals('error', $resultGetStatus['status']);
     }
 
 }

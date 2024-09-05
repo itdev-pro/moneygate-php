@@ -24,7 +24,7 @@ class BaseClass
     private $amount;
 
     private $currency;
-    
+
     /**
      * __construct
      *
@@ -44,17 +44,17 @@ class BaseClass
             $this->id = uniqid();
         }
     }
-    
+
     /**
      * getAuth
      *
-     * @return void
+     * @return Auth
      */
-    function getAuth()
+    function getAuth(): Auth
     {
         return $this->auth;
     }
-    
+
     /**
      * setId
      *
@@ -65,27 +65,27 @@ class BaseClass
     {
         $this->id = $id;
     }
-    
+
     /**
      * getId
      *
-     * @return void
+     * @return string
      */
-    function getId()
+    function getId(): string
     {
         return $this->id;
     }
-    
+
     /**
      * getData
      *
-     * @return void
+     * @return string
      */
-    public function getData()
+    public function getData(): string | false
     {
         return json_encode($this->data);
     }
-    
+
     /**
      * setData
      *
@@ -96,17 +96,17 @@ class BaseClass
     {
         $this->data = $data;
     }
-    
+
     /**
      * getEnviroment
      *
-     * @return void
+     * @return string
      */
-    public function getEnviroment()
+    public function getEnviroment(): string
     {
         return $this->enviroment;
     }
-    
+
     /**
      * setCallbackUrl
      *
@@ -117,17 +117,17 @@ class BaseClass
     {
         $this->callbackUrl = $callbackUrl;
     }
-    
+
     /**
      * getCallbackUrl
      *
-     * @return void
+     * @return string
      */
-    public function getCallbackUrl()
+    public function getCallbackUrl(): string
     {
         return $this->callbackUrl;
     }
-    
+
     /**
      * setAmount
      *
@@ -138,16 +138,16 @@ class BaseClass
     {
         $this->amount = $amount;
     }
-    
+
     /**
      * getAmount
      *
-     * @return void
+     * @return int
      */
-    public function getAmount()
+    public function getAmount(): int
     {
         return $this->amount;
-    }    
+    }
     /**
      * setCurrency
      *
@@ -157,17 +157,17 @@ class BaseClass
     public function setCurrency(string $currency)
     {
         $this->currency = $currency;
-    }    
+    }
     /**
      * getCurrency
      *
-     * @return void
+     * @return string
      */
-    public function getCurrency()
+    public function getCurrency(): string
     {
         return $this->currency;
     }
-    
+
     /**
      * updateData
      *
@@ -182,7 +182,7 @@ class BaseClass
         ], $data);
         $this->setData($array);
     }
-    
+
     /**
      * getOptions
      *
@@ -201,23 +201,25 @@ class BaseClass
             ],
         ];
     }
-    
+
     /**
      * setMethod
      *
      * @param  mixed $method
      * @return void
      */
-    public function setMethod(string $method){
+    public function setMethod(string $method)
+    {
         $this->method = $method;
     }
-    
+
     /**
      * getMethod
      *
-     * @return void
+     * @return string
      */
-    public function getMethod(){
+    public function getMethod(): string
+    {
         return $this->method;
     }
 }

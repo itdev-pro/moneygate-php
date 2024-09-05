@@ -13,15 +13,13 @@ use sdk_moneygate\BaseClass;
  * OnSiteRedirectDepositing
  */
 class OnSiteRedirectDepositing extends BaseClass
-{    
+{
     /**
      * create
      *
-     * @return void
+     * @return array
      */
-    public function create(
-        string $callbackUrl = "https://merchant-side.com/send-status-here",
-        string $success_url = "https://front-merchant-side.com/for-successfull-payment",
+    public function create(string $callbackUrl = "https://merchant-side.com/send-status-here", string $success_url = "https://front-merchant-side.com/for-successfull-payment",
         string $fail_url = "https://front-merchant-side.com/for-failture-payment",
         int $amount = 100,
         string $currency = "RUB",
@@ -44,28 +42,28 @@ class OnSiteRedirectDepositing extends BaseClass
         $data = [
             "value" => $value,
             "data" => [
-            "callback_url" => $this->getCallbackUrl(),
-            "success_url" => $success_url,
-            "fail_url" => $fail_url,
-            "amount" => $this->getAmount(),
-            "currency" => $this->getCurrency(),
-            "payment_instrument" => $paymentInstrument,
-            "customer_data" => $customerData,
-        ]];
+                "callback_url" => $this->getCallbackUrl(),
+                "success_url" => $success_url,
+                "fail_url" => $fail_url,
+                "amount" => $this->getAmount(),
+                "currency" => $this->getCurrency(),
+                "payment_instrument" => $paymentInstrument,
+                "customer_data" => $customerData,
+            ]];
         $this->updateData($data);
         $this->setMethod("POST");
         $context = stream_context_create($this->getOptions());
         $result = file_get_contents($this->getEnviroment() . 'on-site-redirect/send', false, $context);
         return json_decode($result, true);
     }
-    
+
     /**
      * getStatus
      *
      * @param  mixed $id
-     * @return void
+     * @return array
      */
-    public function getStatus(string $id = null)
+    public function getStatus(string $id = null): array
     {
         if ($id) {
             $this->setId($id);
@@ -77,5 +75,5 @@ class OnSiteRedirectDepositing extends BaseClass
         return json_decode($result, true);
 
     }
-    
+
 }
