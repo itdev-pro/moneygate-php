@@ -12,7 +12,7 @@ class OnSiteRedirectDepositingTest extends TestCase
 
     protected function setUp(): void
     {
-        $dotenv = Dotenv::createImmutable(__DIR__);
+        $dotenv = Dotenv::createImmutable(__DIR__.'/../../');
         $dotenv->load();
 
         $this->auth = new Auth($_ENV['privateKey'], $_ENV['Token']);

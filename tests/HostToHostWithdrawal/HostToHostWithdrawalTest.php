@@ -16,7 +16,7 @@ class HostToHostWithdrawalTest extends TestCase
     protected static $card2card = null;
     protected function setUp(): void
     {
-        $dotenv = Dotenv::createImmutable(__DIR__);
+        $dotenv = Dotenv::createImmutable(__DIR__.'/../../');
         $dotenv->load();
 
         $this->auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
