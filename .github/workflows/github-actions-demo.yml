@@ -1,4 +1,4 @@
-name: PHP Composer
+name: SDK Test
 
 on:
   push:
@@ -21,6 +21,7 @@ jobs:
   
     - name: Start tests
       run: vendor/bin/phpunit
+      # TODO: add env
       # env:
       #   Token: 7edbbe5b-1661-4959-b5c8-4dd083995935
       #   privateKey: "-----BEGIN PRIVATE KEY-----
