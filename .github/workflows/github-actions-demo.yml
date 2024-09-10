@@ -12,7 +12,7 @@ permissions:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: php:8.3.6-cli
 
     steps:
     - uses: actions/checkout@v4
@@ -28,10 +28,6 @@ jobs:
     #     key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
     #     restore-keys: |
     #       ${{ runner.os }}-php-
-    - name: update
-      run: apt update
-    - name: install php
-      run: apt install php8.3
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
   
