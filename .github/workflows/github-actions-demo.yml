@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
   
@@ -24,30 +24,30 @@ jobs:
       env:
         Token: 7edbbe5b-1661-4959-b5c8-4dd083995935
         privateKey: "-----BEGIN PRIVATE KEY-----
-                    MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCZYARBlN98lJMd
-                    NzdLaB+N3wXkmOGEKQjKq2mTAqHPg541dY57gpwFqupxZmv06HMAbBAlH821JBQn
-                    FpAepWPQQlhJ6WIDf6O/tszzLjVuIosZUxj6kvEXCKOG71MIG6DgjSdJace6gSeV
-                    LelkASLe5KxeiyFxKN8dRF1g62+ZdHzaylyyQFO0eHmIPWuFlfVKFnsdqT5TtAes
-                    x6z2JdU++2dG4B48q24iy8SOXVQPcPBnevo6xDfOk5reXl8N4DNwpmOqUohEY0Mr
-                    rImpRocA/xhO486nEMgRa6hMnHVw0pAP+gv1Lg/Blv2NpLzUdFNkmPXHhgNUlO/c
-                    gRV0mFlfAgMBAAECggEAI/QpK0J93VNq5Sdjc+7VrslANWVNQFDqObBTEF5GlkGx
-                    XbDQFM36Sy3UxX6QAhpXkxrB8iHxc+wgOUWFxVlZ+6EB11m5Wz6ZoUB17O/BIK9C
-                    Uk5zhZHaqF6jDuedXEI1xU3xjrkYU/Ug1Uys8H9/sCaE7ajJzyAYpWC4TxcB00Pp
-                    SWb9BwIR3kLr6VPgpr2yOm7eeYcxWg3rVFhp5urPz8si7Cn5ZC5+M3o8YitIOziY
-                    EwLsjetUi3SnxRFFm0x7E7UlsytiXNpPSeWu7b/+ndQgGw7CdOQCvz5MxWkYG/jD
-                    25z++BIrU2QU1L6z/oOuaMA09QZy9adZ3Xu+uh14aQKBgQDSqid2Ab0JahHCs8DD
-                    macls5lMsJnvgwOKetV7dYIxxKeyqSNombi74YQlIeM2kCZ281BILY7kLEbI7tCa
-                    HffOVwwRdKhveeCKulTsW04R1aVsUDOXiKp5QpOo1BJsYxnI+1NTq4XqDWBTgbrh
-                    L/HvgCnBJnXq49ZBwUtGpX6WewKBgQC6YbBXYlwd2AKqB0OM//kgRRpvfXIKZB9t
-                    eiLhNnEaXHeNoqvWPoUC6Ao4a6H77cFt+rDGzNbncSgGA3dDL7Gh9+OVV1tA3NRE
-                    1BtUQvlVsfHo7g989f/vEovhFOTs9T7N6Adw95qX45SxMrJwl94BxV0QYeKWg5pH
-                    T/1diI+lbQKBgCbS8P7QhzQq9ib51ba2pJVQKhp2GYiIjqiAxsM//sSJR5ankTz/
-                    x4non9/wBN3TZyNY6BzFOKZYepshWBRvHXJLnI/C/h+9SGKIwInmsdablycFCN0O
-                    dMxwNqJQoyySfvgJSWwMGlvuJyh8qiJCIcZPymIsYmLtpljr9KGKcm/tAoGAB1tx
-                    1ZE5Z6guOr38qaU1FVQE/h+qj8RyBSVMGS3H+y1pPrsMI3HmWD4GoUGGbGZvO0Mp
-                    FT/iv9IUrWAXphxM28LoRe3j2USeUHU6+vGF3B8hGHvFOr6PMsW9pc3oV34602/0
-                    Uz5C6Pn/1ZrVtmIYTmOXD919T0m0nloG+1k3qmUCgYByof+8P4VIH805EHcwkfA8
-                    SXVH08Fc/19y7WdT6lu9TeA5lD7kYPuPGdMzsZI80o/g5+/YooTxcItV7jhfaUqM
-                    gf+UBdyaueRAUtl2/duSskrg1gBt8yIecs63maF39tekELma2J5g27szlJrj+I/G
-                    +bHW7cTJGlOXyXNIaQbJTA==
-                    -----END PRIVATE KEY-----"
+                MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCZYARBlN98lJMd
+                NzdLaB+N3wXkmOGEKQjKq2mTAqHPg541dY57gpwFqupxZmv06HMAbBAlH821JBQn
+                FpAepWPQQlhJ6WIDf6O/tszzLjVuIosZUxj6kvEXCKOG71MIG6DgjSdJace6gSeV
+                LelkASLe5KxeiyFxKN8dRF1g62+ZdHzaylyyQFO0eHmIPWuFlfVKFnsdqT5TtAes
+                x6z2JdU++2dG4B48q24iy8SOXVQPcPBnevo6xDfOk5reXl8N4DNwpmOqUohEY0Mr
+                rImpRocA/xhO486nEMgRa6hMnHVw0pAP+gv1Lg/Blv2NpLzUdFNkmPXHhgNUlO/c
+                gRV0mFlfAgMBAAECggEAI/QpK0J93VNq5Sdjc+7VrslANWVNQFDqObBTEF5GlkGx
+                XbDQFM36Sy3UxX6QAhpXkxrB8iHxc+wgOUWFxVlZ+6EB11m5Wz6ZoUB17O/BIK9C
+                Uk5zhZHaqF6jDuedXEI1xU3xjrkYU/Ug1Uys8H9/sCaE7ajJzyAYpWC4TxcB00Pp
+                SWb9BwIR3kLr6VPgpr2yOm7eeYcxWg3rVFhp5urPz8si7Cn5ZC5+M3o8YitIOziY
+                EwLsjetUi3SnxRFFm0x7E7UlsytiXNpPSeWu7b/+ndQgGw7CdOQCvz5MxWkYG/jD
+                25z++BIrU2QU1L6z/oOuaMA09QZy9adZ3Xu+uh14aQKBgQDSqid2Ab0JahHCs8DD
+                macls5lMsJnvgwOKetV7dYIxxKeyqSNombi74YQlIeM2kCZ281BILY7kLEbI7tCa
+                HffOVwwRdKhveeCKulTsW04R1aVsUDOXiKp5QpOo1BJsYxnI+1NTq4XqDWBTgbrh
+                L/HvgCnBJnXq49ZBwUtGpX6WewKBgQC6YbBXYlwd2AKqB0OM//kgRRpvfXIKZB9t
+                eiLhNnEaXHeNoqvWPoUC6Ao4a6H77cFt+rDGzNbncSgGA3dDL7Gh9+OVV1tA3NRE
+                1BtUQvlVsfHo7g989f/vEovhFOTs9T7N6Adw95qX45SxMrJwl94BxV0QYeKWg5pH
+                T/1diI+lbQKBgCbS8P7QhzQq9ib51ba2pJVQKhp2GYiIjqiAxsM//sSJR5ankTz/
+                x4non9/wBN3TZyNY6BzFOKZYepshWBRvHXJLnI/C/h+9SGKIwInmsdablycFCN0O
+                dMxwNqJQoyySfvgJSWwMGlvuJyh8qiJCIcZPymIsYmLtpljr9KGKcm/tAoGAB1tx
+                1ZE5Z6guOr38qaU1FVQE/h+qj8RyBSVMGS3H+y1pPrsMI3HmWD4GoUGGbGZvO0Mp
+                FT/iv9IUrWAXphxM28LoRe3j2USeUHU6+vGF3B8hGHvFOr6PMsW9pc3oV34602/0
+                Uz5C6Pn/1ZrVtmIYTmOXD919T0m0nloG+1k3qmUCgYByof+8P4VIH805EHcwkfA8
+                SXVH08Fc/19y7WdT6lu9TeA5lD7kYPuPGdMzsZI80o/g5+/YooTxcItV7jhfaUqM
+                gf+UBdyaueRAUtl2/duSskrg1gBt8yIecs63maF39tekELma2J5g27szlJrj+I/G
+                +bHW7cTJGlOXyXNIaQbJTA==
+                -----END PRIVATE KEY-----"
