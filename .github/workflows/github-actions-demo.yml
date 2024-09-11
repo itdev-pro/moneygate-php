@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
     - name: Set env
-      run: echo "TOKEN: ${{ secrets.TOKEN }}" >> .env;
+      run: echo "TOKEN=${{ secrets.TOKEN }}" >> .env;
 
     - name: Start tests
       run: vendor/bin/phpunit
