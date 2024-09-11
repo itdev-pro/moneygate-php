@@ -8,7 +8,7 @@ class BalanceTest extends TestCase
 {
     protected function setUp(): void
     {
-        $dotenv = Dotenv::createImmutable(__DIR__.'/../../');
+        $dotenv = Dotenv::createImmutable(__DIR__.'/../../../');
         $dotenv->load();
     }
 
