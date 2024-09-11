@@ -1,5 +1,4 @@
 <?php
-use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
 use sdk_moneygate\Auth;
 use sdk_moneygate\Balance;
@@ -8,8 +7,7 @@ class BalanceTest extends TestCase
 {
     protected function setUp(): void
     {
-        $dotenv = Dotenv::createImmutable(__DIR__.'/../../../');
-        $dotenv->load();
+
     }
 
     protected function tearDown(): void
