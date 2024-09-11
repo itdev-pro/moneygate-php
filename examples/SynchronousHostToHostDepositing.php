@@ -8,7 +8,7 @@ use sdk_moneygate\SynchronousHostToHostDepositing;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+$auth = new Auth($_ENV['RIGHT_PRIVATE_KEY'], $_ENV['TOKEN']);
 
 $example = new SynchronousHostToHostDepositing($auth, true); // создание экземпляра класса
 $resultCreating = $example->create(customer_id: "2a1bc47b-38d2-4631-9f8c-0d497081f1ca"); // Создание нового платежного ордера на вывод денежных средств

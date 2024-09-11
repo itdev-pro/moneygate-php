@@ -27,8 +27,8 @@ class Balance extends BaseClass
         return [
             'http' => [
                 'method' => 'GET',
-                'header' => "X-Auth-Token: " . $this->auth->getXAuthToken() . "\r\n" .
-                "X-Auth-Sign: " . $this->auth->get_X_Auth_Sign($this->getData()) . "\r\n" .
+                'header' => "X-Auth-Token: " . $this->getAuth()->getXAuthToken() . "\r\n" .
+                "X-Auth-Sign: " . $this->getAuth()->getXAuthSign($this->getData()) . "\r\n" .
                 "X-Request-ID: " . $this->getData() . "\r\n" .
                 "Accept: application/json'",
 

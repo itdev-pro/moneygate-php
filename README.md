@@ -34,7 +34,7 @@ class BalanceExample
         $dotenv = Dotenv::createImmutable(__DIR__);
         $dotenv->load();
 
-        $auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+        $auth = new Auth($_ENV['RIGHT_PRIVATE_KEY'], $_ENV['TOKEN']);
 
         $result = new Balance($auth, true);
 

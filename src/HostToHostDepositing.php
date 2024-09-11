@@ -11,6 +11,20 @@ use sdk_moneygate\BaseClass;
 
 class HostToHostDepositing extends BaseClass
 {
+
+    public function __construct(Auth $auth, bool $isTest = false, string $id = null)
+    {
+        $this->setAuth($auth);
+        $this->setEnviroment(self::PRODUCT_ENV . 'host-to-host/deposit-orders');
+        if ($isTest) {
+            $this->setEnviroment(self::STABLE_TEST_ENV . 'host-to-host/deposit-orders');
+        }
+        if (!$id) {
+            $this->setId(uniqid());
+        }else{
+            $this->setId($id);
+        }
+    }
     public function create(string $callbackUrl = "https://merchant-side.com/send-status-here", int $amount = 100, string $currency = "RUB"): array
     {
         $this->setCallbackUrl($callbackUrl);
@@ -24,10 +38,10 @@ class HostToHostDepositing extends BaseClass
         ]];
         $this->updateData($data);
         $context = stream_context_create($this->getOptions());
-        $result = file_get_contents($this->getEnviroment() . 'host-to-host/deposit-orders/new', false, $context);
+        $result = file_get_contents($this->getEnviroment() . '/new', false, $context);
         return json_decode($result, true);
     }
-    
+
     /**
      * getPaymentInstruments
      *
@@ -42,10 +56,10 @@ class HostToHostDepositing extends BaseClass
         $this->setMethod("POST");
         $this->updateData([]);
         $context = stream_context_create($this->getOptions());
-        $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/get-payment-instruments", false, $context);
+        $result = file_get_contents($this->getEnviroment() . '/get-payment-instruments', false, $context);
         return json_decode($result, true);
     }
-    
+
     /**
      * setPaymentInstruments
      *
@@ -83,10 +97,10 @@ class HostToHostDepositing extends BaseClass
         ]);
         $this->setMethod("POST");
         $context = stream_context_create($this->getOptions());
-        $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/set-payment-instrument", false, $context);
+        $result = file_get_contents($this->getEnviroment() . '/set-payment-instrument', false, $context);
         return json_decode($result, true);
     }
-    
+
     /**
      * confirm
      *
@@ -101,10 +115,10 @@ class HostToHostDepositing extends BaseClass
         $this->updateData([]);
         $this->setMethod("POST");
         $context = stream_context_create($this->getOptions());
-        $result = file_get_contents($this->getEnviroment() . "host-to-host/deposit-orders/confirm", false, $context);
+        $result = file_get_contents($this->getEnviroment() . '/confirm', false, $context);
         return json_decode($result, true);
     }
-    
+
     /**
      * getStatus
      *
@@ -119,7 +133,7 @@ class HostToHostDepositing extends BaseClass
         $this->updateData([]);
         $this->setMethod("POST");
         $context = stream_context_create($this->getOptions());
-        $result = file_get_contents($this->getEnviroment() . "host-to-host/withdraw-orders/get-status", false, $context);
+        $result = file_get_contents($this->getEnviroment() . '/get-status', false, $context);
         return json_decode($result, true);
     }
 

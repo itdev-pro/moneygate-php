@@ -19,7 +19,7 @@ class BalanceTest extends TestCase
 
     public function testWrongGetBalance()
     {
-        $auth = new Auth($_ENV['wronkPrivateKey'], $_ENV['Token']);
+        $auth = new Auth($_ENV['WRONG_PRIVATE_KEY'], $_ENV['TOKEN']);
         $balance = new Balance($auth, true);
         $auth_error_result = [
             'error' => 'auth error',
@@ -30,7 +30,7 @@ class BalanceTest extends TestCase
 
     public function testRightGetBalance()
     {
-        $auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+        $auth = new Auth($_ENV['RIGHT_PRIVATE_KEY'], $_ENV['TOKEN']);
         $balance = new Balance($auth, true);
         $result = $balance->getBalance();
         $this->assertArrayHasKey('data', $result);

@@ -15,9 +15,9 @@ class BaseClass
     private string $method;
     private string $enviroment;
     private $data;
-    public Auth $auth;
+    private Auth $auth;
 
-    public $id;
+    private $id;
 
     private $callbackUrl;
 
@@ -35,24 +35,51 @@ class BaseClass
      */
     public function __construct(Auth $auth, bool $isTest = false, string $id = null)
     {
-        $this->auth = $auth;
+        $this->setAuth($auth);
         $this->enviroment = self::PRODUCT_ENV;
         if ($isTest) {
             $this->enviroment = self::STABLE_TEST_ENV;
         }
+        
         if (!$id) {
-            $this->id = uniqid();
+            $this->setId(uniqid());
         }
+        else{
+            $this->setId($id);
+        }
+        
     }
-
+        
+    /**
+     * setAuth
+     *
+     * @param  mixed $auth
+     * @return void
+     */
+    public function setAuth(Auth $auth): void
+    {
+        $this->auth = $auth;
+    }
+    
     /**
      * getAuth
      *
      * @return Auth
      */
-    function getAuth(): Auth
+    public function getAuth(): Auth
     {
         return $this->auth;
+    }
+
+    /**
+     * setEnviroment
+     *
+     * @param  mixed $enviroment
+     * @return void
+     */
+    public function setEnviroment(string $enviroment): void 
+    {
+        $this->enviroment = $enviroment;
     }
 
     /**
@@ -61,7 +88,7 @@ class BaseClass
      * @param  mixed $id
      * @return void
      */
-    function setId(string $id)
+    public function setId(string $id)
     {
         $this->id = $id;
     }
@@ -195,7 +222,7 @@ class BaseClass
                 'method' => $this->getMethod(),
                 'content' => $this->getData(),
                 'header' => "X-Auth-Token: " . $this->auth->getXAuthToken() . "\r\n" .
-                "X-Auth-Sign: " . $this->auth->get_X_Auth_Sign($this->getData()) . "\r\n" .
+                "X-Auth-Sign: " . $this->auth->getXAuthSign($this->getData()) . "\r\n" .
                 "Content-Type: application/json\r\n" .
                 "Accept: application/json'",
             ],

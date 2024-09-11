@@ -16,7 +16,7 @@ class SynchronousHostToHostDepositingTest extends TestCase
         $dotenv = Dotenv::createImmutable(__DIR__.'/../../../');
         $dotenv->load();
 
-        $this->auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+        $this->auth = new Auth($_ENV['RIGHT_PRIVATE_KEY'], $_ENV['TOKEN']);
 
     }
 
