@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
     - name: Set env
-      run: echo "TOKEN=${{ secrets.TOKEN }}\n" >> .env; echo "RIGHT_PRIVATE_KEY=${{ secrets.RIGHT_PRIVATE_KEY }}\n" >> .env;echo "WRONG_PRIVATE_KEY=${{ secrets.WRONG_PRIVATE_KEY }}" >> .env;
+      run: echo "TOKEN=${{ secrets.TOKEN }}\n" >> .env; echo "RIGHT_PRIVATE_KEY=\"${{ secrets.RIGHT_PRIVATE_KEY }}\"" >> .env;echo "WRONG_PRIVATE_KEY=\"${{ secrets.WRONG_PRIVATE_KEY }}\"" >> .env;
 
     - name: Start tests
       run: vendor/bin/phpunit
