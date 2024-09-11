@@ -1,5 +1,5 @@
 <?php
-use Dotenv\Dotenv;
+
 use PHPUnit\Framework\TestCase;
 use sdk_moneygate\Auth;
 
@@ -12,8 +12,6 @@ class AuthUnitTest extends TestCase
 
     protected function setUp(): void
     {
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../../');
-        $dotenv->load();
         $this->token = getenv("TOKEN");
         $this->token = getenv("RIGHT_PRIVATE_KEY");
         $this->auth = new Auth(getenv("RIGHT_PRIVATE_KEY"), getenv("TOKEN"));
