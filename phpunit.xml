@@ -4,8 +4,8 @@
         <testsuite name="unit">
             <directory suffix="UnitTest.php">./tests/Unit</directory>
         </testsuite>
-        <!-- <testsuite name="integration">
+        <testsuite name="integration">
             <directory suffix="Test.php">./tests/Integration</directory>
-        </testsuite> -->
+        </testsuite>
     </testsuites>
 </phpunit>

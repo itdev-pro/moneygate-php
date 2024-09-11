@@ -1,6 +1,5 @@
 <?php
 
-use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
 use sdk_moneygate\Auth;
 use sdk_moneygate\HostToHostDepositing;
@@ -17,11 +16,7 @@ class HostToHostDepositingTest extends TestCase
 
     protected function setUp(): void
     {
-        $dotenv = Dotenv::createImmutable(__DIR__.'/../../../');
-        $dotenv->load();
-
-        $this->auth = new Auth($_ENV['RIGHT_PRIVATE_KEY'], $_ENV['TOKEN']);
-
+        $this->auth = new Auth(getenv('RIGHT_PRIVATE_KEY'), getenv('TOKEN'));
     }
 
     protected function tearDown(): void
