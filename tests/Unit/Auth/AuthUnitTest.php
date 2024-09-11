@@ -14,9 +14,9 @@ class AuthUnitTest extends TestCase
     {
         $dotenv = Dotenv::createImmutable(__DIR__ . '/../../../');
         $dotenv->load();
-        $this->token = $_ENV['TOKEN'];
-        $this->token = $_ENV['RIGHT_PRIVATE_KEY'];
-        $this->auth = new Auth($_ENV['RIGHT_PRIVATE_KEY'], $_ENV['TOKEN']);
+        $this->token = getenv("TOKEN");
+        $this->token = getenv("RIGHT_PRIVATE_KEY");
+        $this->auth = new Auth(getenv("RIGHT_PRIVATE_KEY"), getenv("TOKEN"));
     }
 
     protected function tearDown(): void
