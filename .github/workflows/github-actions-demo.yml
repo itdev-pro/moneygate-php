@@ -2,9 +2,9 @@ name: SDK Test
 
 on:
   push:
-    branches: [ "main", "6-ci-cd" ]
+    branches: [ "main"]
   pull_request:
-    branches: [ "main", "6-ci-cd" ]
+    branches: [ "main"]
 
 permissions:
   contents: read
