@@ -8,7 +8,7 @@ use sdk_moneygate\HostToHostDepositing;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+$auth = new Auth($_ENV['RIGHT_PRIVATE_KEY'], $_ENV['TOKEN']);
 
 $hostToHostDepositing = new HostToHostDepositing($auth, true); // создание экземпляра класса
 $resultCreating = $hostToHostDepositing->create(); // создание платёжного ордера

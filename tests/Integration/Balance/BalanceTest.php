@@ -1,5 +1,5 @@
 <?php
-use Dotenv\Dotenv;
+
 use PHPUnit\Framework\TestCase;
 use sdk_moneygate\Auth;
 use sdk_moneygate\Balance;
@@ -8,8 +8,7 @@ class BalanceTest extends TestCase
 {
     protected function setUp(): void
     {
-        $dotenv = Dotenv::createImmutable(__DIR__);
-        $dotenv->load();
+
     }
 
     protected function tearDown(): void
@@ -19,7 +18,7 @@ class BalanceTest extends TestCase
 
     public function testWrongGetBalance()
     {
-        $auth = new Auth($_ENV['wronkPrivateKey'], $_ENV['Token']);
+        $auth = new Auth(getenv('WRONG_PRIVATE_KEY'), getenv('TOKEN'));
         $balance = new Balance($auth, true);
         $auth_error_result = [
             'error' => 'auth error',
@@ -30,7 +29,7 @@ class BalanceTest extends TestCase
 
     public function testRightGetBalance()
     {
-        $auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+        $auth = new Auth(getenv('RIGHT_PRIVATE_KEY'), getenv('TOKEN'));
         $balance = new Balance($auth, true);
         $result = $balance->getBalance();
         $this->assertArrayHasKey('data', $result);

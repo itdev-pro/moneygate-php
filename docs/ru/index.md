@@ -25,7 +25,7 @@ use sdk_moneygate\Auth; // класс для подготовки данных �
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+$auth = new Auth($_ENV['privateKey'], $_ENV['TOKEN']);
 ?>
 ```
 
@@ -40,7 +40,7 @@ use sdk_moneygate\Auth; // класс для подготовки данных �
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+$auth = new Auth($_ENV['privateKey'], $_ENV['TOKEN']);
 
 use sdk_moneygate\Balance; // импорт класса
 
@@ -61,7 +61,7 @@ use sdk_moneygate\HostToHostDepositing;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+$auth = new Auth($_ENV['privateKey'], $_ENV['TOKEN']);
 
 $hostToHostDepositing = new HostToHostDepositing($auth, true); // создание экземпляра класса
 $resultCreating = $hostToHostDepositing->create(); // создание платёжного ордера
@@ -113,7 +113,7 @@ use sdk_moneygate\HostToHostWithdrawal;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+$auth = new Auth($_ENV['privateKey'], $_ENV['TOKEN']);
 
 $example = new HostToHostWithdrawal($auth, true); // создание экземпляра класса
 $resultCreating = $example->create(); // Создание нового платежного ордера на вывод денежных средств
@@ -164,7 +164,7 @@ use sdk_moneygate\SynchronousHostToHostDepositing;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+$auth = new Auth($_ENV['privateKey'], $_ENV['TOKEN']);
 
 $example = new SynchronousHostToHostDepositing($auth, true); // создание экземпляра класса
 $resultCreating = $example->create(customer_id: "2a1bc47b-38d2-4631-9f8c-0d497081f1ca"); // Создание нового платежного ордера на вывод денежных средств
@@ -194,7 +194,7 @@ use sdk_moneygate\OnSiteRedirectDepositing;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
+$auth = new Auth($_ENV['privateKey'], $_ENV['TOKEN']);
 
 $example = new OnSiteRedirectDepositing($auth, true); // создание экземпляра класса
 $resultCreating = $example->create(customer_id: "2a1bc47b-38d2-4631-9f8c-0d497081f1ca"); // Создание нового платежного запроса

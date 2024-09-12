@@ -13,9 +13,9 @@ namespace sdk_moneygate;
 
 class Auth
 {
-    public string $xAuthToken;
+    private string $xAuthToken;
 
-    public $privateKey;
+    private string $privateKey;
 
     /**
      * __construct
@@ -26,24 +26,40 @@ class Auth
      */
     function __construct(string $privateKey, string $xAuthToken)
     {
-        $this->privateKey = $privateKey;
-        $this->xAuthToken = $xAuthToken;
+        $this->setPrivateKey($privateKey);
+        $this->setXAuthToken($xAuthToken);
     }
 
     /**
-     * get_X_Auth_Sign
+     * getXAuthSign
      *
      * @param  mixed $data
      * @return string
      */
-    function get_X_Auth_Sign($data): string
+    function getXAuthSign($data): string
     {
         // Функция для получения X-Auth-Sign
         // Подписываем данные
-        openssl_sign($data, $signature, $this->privateKey, OPENSSL_ALGO_SHA256);
+        openssl_sign($data, $signature, $this->getPrivateKey(), OPENSSL_ALGO_SHA256);
         // Преобразуем подпись в base64
         $base64Signature = base64_encode($signature);
         return $base64Signature;
+    }
+    
+    /**
+     * setPrivateKey
+     *
+     * @param  mixed $privateKey
+     * @return void
+     */
+    function setPrivateKey(string $privateKey): void
+    {
+        $this->privateKey = $privateKey;
+    }
+
+    function setXAuthToken(string $XAuthToken): void
+    {
+        $this->xAuthToken = $XAuthToken; 
     }
 
     /**
@@ -54,6 +70,16 @@ class Auth
     function getXAuthToken(): string
     {
         return $this->xAuthToken;
+    }
+    
+    /**
+     * getPrivateKey
+     *
+     * @return string
+     */
+    function getPrivateKey(): string
+    {
+        return $this->privateKey;
     }
 
 }

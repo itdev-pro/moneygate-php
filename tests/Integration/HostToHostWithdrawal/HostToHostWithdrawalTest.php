@@ -1,52 +1,45 @@
 <?php
 
-use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
 use sdk_moneygate\Auth;
-use sdk_moneygate\HostToHostDepositing;
+use sdk_moneygate\HostToHostWithdrawal;
 
-class HostToHostDepositingTest extends TestCase
+class HostToHostWithdrawalTest extends TestCase
 {
-    public $auth;
 
+    public $auth;
     protected static $id;
 
     protected static $sbp = null;
 
     protected static $card2card = null;
-
     protected function setUp(): void
     {
-        $dotenv = Dotenv::createImmutable(__DIR__);
-        $dotenv->load();
-
-        $this->auth = new Auth($_ENV['privateKey'], $_ENV['Token']);
-
+        $this->auth = new Auth(getenv('RIGHT_PRIVATE_KEY'), getenv('TOKEN'));
     }
-
     protected function tearDown(): void
     {
 
     }
 
-    public function testHostToHostDepositingCreate(): void
+    public function testHostToHostWithdrawalCreate(): void
     {
-        $hostToHostDepositing = new HostToHostDepositing($this->auth, true);
-        $resultCreating = $hostToHostDepositing->create();
+        $hostToHostWithdrawal = new HostToHostWithdrawal($this->auth, true);
+        $resultCreating = $hostToHostWithdrawal->create();
         $this->assertArrayHasKey('data', $resultCreating);
         $this->assertArrayHasKey('id', $resultCreating);
         $this->assertArrayHasKey('success', $resultCreating);
         $this->assertEquals('true', $resultCreating['success']);
-        self::$id = $hostToHostDepositing->getId();
-        $resultPayment = $hostToHostDepositing->getPaymentInstruments();
+        self::$id = $hostToHostWithdrawal->getId();
+        $resultPayment = $hostToHostWithdrawal->getPaymentInstruments();
         $this->assertArrayHasKey('success', $resultPayment);
         $this->assertEquals('true', $resultPayment['success']);
         $this->assertArrayHasKey('data', $resultPayment);
     }
 
-    public function testHostToHostDepositingPaymentInstruments(): void
+    public function testHostToHostWithdrawalPaymentInstruments(): void
     {
-        $testPaymentInstruments = new HostToHostDepositing($this->auth, true);
+        $testPaymentInstruments = new HostToHostWithdrawal($this->auth, true);
         $resultPayment = $testPaymentInstruments->getPaymentInstruments(self::$id);
         $this->assertArrayHasKey('success', $resultPayment);
         $this->assertEquals('true', $resultPayment['success']);
@@ -63,39 +56,39 @@ class HostToHostDepositingTest extends TestCase
         }
     }
 
-    public function testHostToHostDepositingSetPaymentInstrumentsSBP(): void
+    public function testHostToHostWithdrawalSetPaymentInstrumentsSBP(): void
     {
         if (self::$sbp) {
-            $testSetPaymentInstruments = new HostToHostDepositing($this->auth, true);
-            $resultSetPaymentInstruments = $testSetPaymentInstruments->setPaymentInstruments(self::$id, self::$sbp["payment_type"], self::$sbp["bank"], "2a1bc47b-38d2-4631-9f8c-0d497081f1ca");
+            $testSetPaymentInstruments = new HostToHostWithdrawal($this->auth, true);
+            $resultSetPaymentInstruments = $testSetPaymentInstruments->setPaymentInstruments(self::$id, self::$sbp["payment_type"], self::$sbp["bank"], "2a1bc47b-38d2-4631-9f8c-0d497081f1ca", phone: "+79991112233");
             $this->assertArrayHasKey('success', $resultSetPaymentInstruments);
             $this->assertEquals('true', $resultSetPaymentInstruments['success']);
         }
     }
 
-    public function testHostToHostDepositingSetPaymentInstrumentsCard2Card(): void
+    public function testHostToHostWithdrawalSetPaymentInstrumentsCard2Card(): void
     {
         if (self::$card2card) {
-            $testSetPaymentInstruments = new HostToHostDepositing($this->auth, true);
-            $resultSetPaymentInstruments = $testSetPaymentInstruments->setPaymentInstruments(self::$id, self::$card2card["payment_type"], self::$card2card["bank"], "2a1bc47b-38d2-4631-9f8c-0d497081f1ca", "1234");
+            $testSetPaymentInstruments = new HostToHostWithdrawal($this->auth, true);
+            $resultSetPaymentInstruments = $testSetPaymentInstruments->setPaymentInstruments(self::$id, self::$card2card["payment_type"], self::$card2card["bank"], "2a1bc47b-38d2-4631-9f8c-0d497081f1ca", card_no: "1111222233334444", card_holder_name: "John Smith");
             $this->assertArrayHasKey('success', $resultSetPaymentInstruments);
             $this->assertEquals('true', $resultSetPaymentInstruments['success']);
         }
     }
 
-    public function testHostToHostDepositingConfirm(): void
+    public function testHostToHostWithdrawalConfirm(): void
     {
         if (self::$sbp or self::$card2card) {
-            $testConfirm = new HostToHostDepositing($this->auth, true);
+            $testConfirm = new HostToHostWithdrawal($this->auth, true);
             $resultConfirm = $testConfirm->confirm(self::$id);
             $this->assertArrayHasKey('success', $resultConfirm);
             $this->assertEquals('true', $resultConfirm['success']);
         }
     }
 
-    public function testHostToHostDepositingGetStatus(): void
+    public function testHostToHostWithdrawalGetStatus(): void
     {
-        $testGetStatus = new HostToHostDepositing($this->auth, true);
+        $testGetStatus = new HostToHostWithdrawal($this->auth, true);
         $resultGetStatus = $testGetStatus->getStatus(self::$id);
         $this->assertArrayHasKey('status', $resultGetStatus);
         $this->assertNotEquals('error', $resultGetStatus['status']);
