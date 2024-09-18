@@ -1,5 +1,5 @@
 {
-    "name": "homi/sdk_moneygate",
+    "name": "itdev-pro/moneygate-php",
     "description": "PHP-SDK library for work with Moneygate API",
     "version": "1.0.0",
     "type": "library",
@@ -12,7 +12,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/mishaniahomi/sdk_moneygate.git"
+            "url": "https://github.com/itdev-pro/moneygate-php.git"
         }
     ],
     "require": {
