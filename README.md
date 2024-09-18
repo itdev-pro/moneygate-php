@@ -16,7 +16,7 @@ The [docs folder](docs/) provides detailed guides for using this library.
 This library can be found on [Packagist](https://packagist.org/packages/homi/sdk_moneygate).
 The recommended way to install this is through [composer](http://getcomposer.org).
 ```bash
-$composer require homi/sdk_moneygate
+$composer require itdev-pro/moneygate-php
 ```
 
 ## Quick start

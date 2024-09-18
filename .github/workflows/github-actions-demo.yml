@@ -1,10 +1,14 @@
-name: SDK Test
+name: another
 
 on:
   push:
-    branches: [ "main"]
+    branches:
+      - "*"
+      - "!main"
   pull_request:
-    branches: [ "main"]
+    branches:
+      - "*"
+      - "!main"
 
 permissions:
   contents: read
@@ -24,4 +28,3 @@ jobs:
         TOKEN: "${{ secrets.TOKEN }}"
         RIGHT_PRIVATE_KEY: "${{ secrets.RIGHT_PRIVATE_KEY }}"
         WRONG_PRIVATE_KEY: "${{ secrets.WRONG_PRIVATE_KEY }}"
-        
