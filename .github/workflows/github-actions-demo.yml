@@ -1,0 +1,30 @@
+name: another
+
+on:
+  push:
+    branches:
+      - "*"
+      - "!main"
+  pull_request:
+    branches:
+      - "*"
+      - "!main"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+    - name: Start tests
+      run: vendor/bin/phpunit
+      env:
+        TOKEN: "${{ secrets.TOKEN }}"
+        RIGHT_PRIVATE_KEY: "${{ secrets.RIGHT_PRIVATE_KEY }}"
+        WRONG_PRIVATE_KEY: "${{ secrets.WRONG_PRIVATE_KEY }}"
