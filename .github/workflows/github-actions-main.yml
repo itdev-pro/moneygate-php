@@ -29,4 +29,4 @@ jobs:
     needs:  test
     steps:
       - name: Update Packagist
-        run: curl -XPOST -H'content-type:application/json' 'https://packagist.org/api/update-package?username=misha.homi&apiToken=${{ secrets.PACKAGIST_TOKEN }}' -d'{"repository":{"url":"https://packagist.org/packages/homitest/sdk_moneygate"}}'
+        run: curl -XPOST -H'content-type:application/json' 'https://packagist.org/api/update-package?username=misha.homi&apiToken=${{ secrets.PACKAGIST_TOKEN }}' -d'{"repository":{"url":"https://packagist.org/packages/itdev-pro/moneygate-php"}}'
