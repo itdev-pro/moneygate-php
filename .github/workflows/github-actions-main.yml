@@ -1,0 +1,32 @@
+name: main
+
+on:
+  push:
+    branches: [ "main"]
+  pull_request:
+    branches: [ "main"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+    - name: Start tests
+      run: vendor/bin/phpunit
+      env:
+        TOKEN: "${{ secrets.TOKEN }}"
+        RIGHT_PRIVATE_KEY: "${{ secrets.RIGHT_PRIVATE_KEY }}"
+        WRONG_PRIVATE_KEY: "${{ secrets.WRONG_PRIVATE_KEY }}"
+  deploy:
+    runs-on: ubuntu-latest    
+    needs:  test
+    steps:
+      - name: Update Packagist
+        run: curl -XPOST -H'content-type:application/json' 'https://packagist.org/api/update-package?username=misha.homi&apiToken=${{ secrets.PACKAGIST_TOKEN }}' -d'{"repository":{"url":"https://packagist.org/packages/itdev-pro/moneygate-php"}}'
