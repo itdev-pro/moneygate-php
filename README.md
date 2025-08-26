@@ -36,7 +36,8 @@ class BalanceExample
 
         $auth = new Auth($_ENV['RIGHT_PRIVATE_KEY'], $_ENV['TOKEN']);
 
-        $result = new Balance($auth, true);
+        $balance = new Balance($auth, true);
+        $result = $balance->getBalance();
 
         return $result;
     }

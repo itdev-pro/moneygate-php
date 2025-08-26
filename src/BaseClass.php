@@ -223,8 +223,9 @@ class BaseClass
                 'content' => $this->getData(),
                 'header' => "X-Auth-Token: " . $this->auth->getXAuthToken() . "\r\n" .
                 "X-Auth-Sign: " . $this->auth->getXAuthSign($this->getData()) . "\r\n" .
+                "X-Request-ID: " . $this->getId() . "\r\n" .
                 "Content-Type: application/json\r\n" .
-                "Accept: application/json'",
+                "Accept: application/json\r\n",
             ],
         ];
     }
