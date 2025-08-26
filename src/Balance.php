@@ -28,9 +28,9 @@ class Balance extends BaseClass
             'http' => [
                 'method' => 'GET',
                 'header' => "X-Auth-Token: " . $this->getAuth()->getXAuthToken() . "\r\n" .
-                "X-Auth-Sign: " . $this->getAuth()->getXAuthSign($this->getData()) . "\r\n" .
-                "X-Request-ID: " . $this->getData() . "\r\n" .
-                "Accept: application/json'",
+                "X-Auth-Sign: " . $this->getAuth()->getXAuthSign($this->getId()) . "\r\n" .
+                "X-Request-ID: " . $this->getId() . "\r\n" .
+                "Accept: application/json\r\n",
 
             ],
         ];
@@ -44,10 +44,13 @@ class Balance extends BaseClass
     {
         $this->updateData();
         $context = stream_context_create($this->getOptions());
-        $result = file_get_contents($this->getEnviroment() . 'balance', false, $context);
+        $result = @file_get_contents($this->getEnviroment() . 'balance', false, $context);
 
         if ($result === false) {
-            /* Handle error */
+            return [
+                'error' => 'auth error',
+                'error_code' => 400,
+            ];
         }
         return json_decode($result, true);
     }
